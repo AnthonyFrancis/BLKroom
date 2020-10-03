@@ -62,6 +62,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def vote
+    @post = Post.find(params[:id])
+
+    respond_to do |format|
+      if params[:format] == "vote"
+        @post.liked_by current_user
+      elsif params[:format] == "unvote"
+        @post.unliked_by current_user
+        format.html {redirect_to @post}
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -70,6 +83,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :url, :post_image, :post_video)
+      params.require(:post).permit(:title, :body, :url, :post_image, :post_video, :room_id)
     end
 end

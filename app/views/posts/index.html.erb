@@ -1,17 +1,85 @@
-<% content_for :primary_content do %>
-  <% if @posts.exists? %>
-    <%= render @posts %>
-  <% else %>
-    <div class="p-10 text-center">
-      <%= render_svg 'icons/empty' %>
-      <p class="mb-4">Wow such empty... </p>
-      <%= link_to 'Create a new post', new_post_path, class: "btn btn-purple btn-small" %>
+<% if user_signed_in? %>
+
+  <div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-8 container m-auto uppercase text-xs font-semibold">
+      Popular discussions
+  </div>
+
+  
+    <div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-8 container m-auto">
+      <div class="grid grid-cols-2">
+        <div class="text-xl font-bold col-span-6">Today</div>
+      </div>
+    </div>
+
+    <%# @days_from_this_week.each do |day| %>
+        <%# day.strftime("%A") %>
+    <%# end %>
+  
+  <% content_for :primary_content do %>
+    <% if @posts.exists? %>
+      <% render @posts %>
+    <% else %>
+
+      <div class="p-10 text-center">
+        <%= render_svg "icons/empty", styles: "inline fill-current text-gray-400 mb-2" %>
+        <p class="mb-4">Wow such empty...</p>
+        <%= link_to 'Creat a post', new_post_path, class: "btn btn-gray btn-small"%>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+  <% content_for :secondary_content do %>
+    <div class="px-8 pt-6 pb-8">
+      <% unless user_signed_in? %>
+        <%= image_tag "illustration.svg", class: "max-w-full" %>
+        <h3>Explore</h3>
+        <p class="text-gray-600 text-sm">Find your breaking news, sports, TV fan theories, or never-ending streams of cute animals.</p>
+        <%= link_to "How Webbit works", "#", class: "btn btn-small btn-white my-2 block text-center" %>
+      <% else %>
+        <h3>Home</h3>
+        <p class="text-gray-600 text-sm">Your personal BLKroom frontpage. Come here to check in with your favorite communities.</p>
+        <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-white my-2 block text-center"  %>
+        <%#link_to 'Create Room', new_room_path, class: "btn btn-small btn-gray my-2 block text-center"  %>
+        <%= link_to 'Join a Room', rooms_path, class: "btn btn-small btn-gray my-2 block text-center"  %>
+      <% end %>
     </div>
   <% end %>
+
+
+<% else %>
+
+  <%= render "home/header" %>
+
+
+  <div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-8 container m-auto uppercase text-xs font-semibold">
+      Popular discussions
+  </div>
+
+  <div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-8 container m-auto text-xl font-bold">
+      Today
+  </div>
+  <% content_for :primary_content do %>
+        <% render @random %>
+  <% end %>
+
+  <% content_for :secondary_content do %>
+    <div class="px-8 pt-6 pb-8">
+      <% unless user_signed_in? %>
+        <%= image_tag "illustration.svg", class: "max-w-full" %>
+        <h3>Explore</h3>
+        <p class="text-gray-600 text-sm">Find your breaking news, sports, TV fan theories, or never-ending streams of cute animals.</p>
+        <%= link_to "How BLKroom works", about_path, class: "btn btn-small btn-white my-2 block text-center" %>
+      <% else %>
+        <h3>Home</h3>
+        <p class="text-gray-600 text-sm">Your personal BLKroom frontpage. Come here to check in with your favorite communities.</p>
+        <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-white my-2 block text-center"  %>
+        <%= link_to 'Create Community', new_room_path, class: "btn btn-small btn-gray my-2 block text-center"  %>
+      <% end %>
+    </div>
+  <% end %>
+
 <% end %>
 
-<% content_for :secondary_content do %>
-  <%= link_to 'New Post', new_post_path %>
-<% end %>
+
 
 <%= render "basic_layout" %>

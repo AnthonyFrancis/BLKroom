@@ -6,4 +6,6 @@ class Post < ApplicationRecord
 	validates :title, presence: true
 	validates :body, length: { maximum: 8000 }
 	validates :url, url: true, allow_blank: true
+
+	acts_as_votable
 end
