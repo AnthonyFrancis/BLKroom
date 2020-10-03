@@ -46,18 +46,18 @@
           <div class="w-full lg:w-1/3 px-0 mb-2 lg:mb-0">
             <div class="dropdown rounded bg-white text-gray-700 ml-1 hover:bg-gray-200 z-50 relative">
               <%= link_to "#", class: "dropdown-target border no-underline flex justify-between text-gray-700 items-center pt-2 pb-2 pl-3 pr-1 text-sm rounded", role: "button" do %>
-                  <%= content_for?(:community_label) ? yield(:community_label) : "Select a room" %>
+                  <%= content_for?(:room_label) ? yield(:room_label) : "Select a room" %>
                   <%= render_svg 'icons/chevron-down' %>
               <% end %>
               <ul class="dropdown-menu hidden shadow-lg leading-normal list-none p-0 rounded-b border-t text-sm z-50">
-                  <%# @communities.each do |community| %>
+                  <% @rooms.each do |room| %>
                     <li>
-                      <%# link_to community, class: "bg-white px-4 py-2 hover:bg-gray-500 hover:text-white no-underline flex items-center"  do %>
-                        <%# render_svg 'icons/conversation', styles:"avatar-sm mr-2 fill-current text-gray-500" %>
-                        <span>blk/</span> <%# community.name %>
-                      <%# end %>
+                      <%= link_to room, class: "bg-white px-4 py-2 hover:bg-gray-500 hover:text-white no-underline flex items-center"  do %>
+                        <%= render_svg 'icons/conversation', styles:"avatar-sm mr-2 fill-current text-gray-500" %>
+                        <span>blk/</span> <%= room.name %>
+                      <% end %>
                     </li>
-                  <%# end %>
+                  <% end %>
               </ul>
             </div>
           </div>

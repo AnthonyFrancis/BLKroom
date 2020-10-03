@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  #before_action :authenticate_user!, expect: [:show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
@@ -26,6 +28,7 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = current_user.rooms.build(room_params)
+    @room.user_id = current_user.id
 
     respond_to do |format|
       if @room.save
@@ -71,5 +74,10 @@ class RoomsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def room_params
       params.require(:room).permit(:name, :title, :description, :sidebar, :user_id)
+    end
+
+    def correct_user
+      @room = current_user.rooms.find_by(id: params[:id])
+      redirect_to rooms_path, notice: "Naughty naughty...You're not authorised to edit this room." if @room.nil?
     end
 end

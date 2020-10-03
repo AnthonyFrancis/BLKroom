@@ -1,19 +1,88 @@
-<p id="notice"><%= notice %></p>
+<% content_for :room_label, @post.room.name %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<%= render 'rooms/room_header', room: @post.room %>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+<%= content_for :primary_content do %>
+  <div class="p-4 pb-10 pr-6">
+    <div class="flex flex-row items-start justify-between">
 
-<p>
-  <strong>Url:</strong>
-  <%= @post.url %>
-</p>
+      <!--<div class="post-voting text-xs pr-2">
+        <%# render 'voting', post: @post %>
+      </div> -->
+     
+        <% if user_signed_in? %>
+          <% if current_user.liked? @post %>
+            <%=  link_to vote_post_path(@post, 'unvote'), class: "preached-btn btn-white py-8", method: :put, remote: :true do %>
+              <div class="py-2 px-1">
+                  <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-orange-600 inline" %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+                  <div class="vote_count text-center text-orange-600 font-medium text-sm">
+                    <%= @post.get_likes.size %>
+                  </div>
+              </div>    
+            <% end %>
+          <% else %>
+            <%= link_to vote_post_path(@post, 'vote'), class: "preach-btn btn-white py-8", method: :put, remote: :true do %>
+                <div class="py-3 px-1">
+                    <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-gray-600" %>
+                  <div class="vote_count text-center font-medium text-sm">
+                    <%= @post.get_likes.size %>
+                  </div>
+                </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%=  link_to new_user_session_path, class: "preached-btn btn-white py-8" do %>
+            <div class="py-2 px-1">
+                <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-gray-600" %>
+
+                <div class="vote_count text-center text-gray-600 font-medium text-sm">
+                  <%= @post.get_likes.size %>
+                </div>
+            </div>    
+          <% end %>
+        <% end %>
+  
+    <div class="submission-content pl-3">
+        <%= render "posted_by", post: @post %>
+
+        <h1 class="text-xl font-bold"><%= @post.title %></h1>
+
+        <div class="leading-normal text-base lg:pr-6 mb-5 border-b border-gray-200 lg:pr-6">
+
+          <%= image_tag @post.post_image.large.url, class: "max-w-full my-2" if @post.post_image.present? %>
+
+          <%= video_tag @post.post_video.url, class: "max-w-full my-2", controls: true if @post.post_video.present? %>
+
+          <% if @post.url.present? %>
+            <div class="p-3 border rounded my-2 flex justify-center items-center">
+              <%= render_svg "icons/link", styles: "mr-2 text-gray-600 fill-current" %>
+              <%= link_to @post.url, @post.url, class: "lg:text-xl text-lg no-underline" %>
+            </div>
+          <% end %>
+          <div class="py-4">
+            <%= @post.body if @post.body %>
+          </div>
+        </div>
+
+        <%= render "actions", post: @post %>
+
+        <% unless user_signed_in? %>
+            <p class="text-sm text-gray-600 my-2"><%= link_to "Login", new_user_session_path, class: "link" %> or <%= link_to "Sign up", new_user_registration_path, class: "link" %> to comment.</p>
+        <% else %>
+            <%# render "comments/form" %>
+        <% end %>
+
+        <div id="comments" class="mt-6 border-t border-gray-200">
+          <%# render @post.comments %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :secondary_content do %>
+  <%= render 'rooms/sidebar', room: @post.room %>
+<% end %>
+
+<%= render 'basic_layout' %>

@@ -1,5 +1,23 @@
-<h1>New Room</h1>
+<% content_for :room_label, "Create room" %>
 
-<%= render 'form', room: @room %>
+<% content_for :primary_content do %>
+ <div class="lg:p-10 pt-10 pb-10 px-4">
+    <h1 class="text-xl font-normal mb-6">Create a Room</h1>
+    <%= render 'form', room: @room %>
+  </div>
+<% end %>
 
-<%= link_to 'Back', rooms_path %>
+<% content_for :secondary_content do %>
+  <div class="px-8 pt-6 pb-8">
+    <%= render_svg 'community', styles: 'max-w-full h-auto mb-4' %>
+    <h4>Create a new room on webbit</h4>
+    <p class="text-sm italic">Each room requires the following:</p>
+    <ul class="mt-1 pl-4">
+      <li>Name</li>
+      <li>Title</li>
+      <li>Description</li>
+    </ul>
+  </div>
+<% end %>
+
+<%= render "basic_layout" %>

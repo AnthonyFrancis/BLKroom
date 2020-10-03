@@ -58,9 +58,9 @@
           <% end %>
         </h3>
 
-        <%# link_to community_path(post.community), class:"no-underline text-gray-700 font-normal hover:text-gray-700 hover:underline text-sm inline-block" do %>
-            blk/<%# post.community.name %>
-        <%# end %>
+        <%= link_to room_path(post.room), class:"no-underline text-gray-700 font-normal hover:text-gray-700 hover:underline text-sm inline-block" do %>
+            blk/<%= post.room.name %>
+        <% end %>
 
         <span class="mx-1 inline-block text-sm text-gray-700">•</span>
 

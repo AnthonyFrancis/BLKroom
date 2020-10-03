@@ -1,11 +1,18 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  respond_to :js, :html, :json
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
+    @popular = Post.order(cached_votes_total: :desc)
+    @random = Post.order("RANDOM()")
+
+    today = Date.today # Today's date
+    @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
   end
 
   # GET /posts/1
@@ -84,5 +91,10 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :body, :url, :post_image, :post_video, :room_id)
+    end
+
+    def correct_user
+      @posts = current_user.posts.find_by(id: params[:id])
+      redirect_to posts_path, notice: "Naughty naughty...You're not authorised to edit this post." if @posts.nil?
     end
 end

@@ -1,24 +1,19 @@
-<p id="notice"><%= notice %></p>
+<% content_for :room_label, @room.name %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @room.name %>
-</p>
+<div class="bg-gray-600 text-white">
+  <div class="container py-10 px-24 mx-auto">
+    <h1 class="lg:text-3xl text-lg">blk/<%= @room.name %></h1>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @room.title %>
-</p>
+<% content_for :primary_content do %>
+  <% @room.posts.each do |room| %>
+    <%= render 'posts/post', post: room %>
+  <% end %>
+<% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @room.description %>
-</p>
+<% content_for :secondary_content do %>
+    <%= render 'sidebar', room: @room %>
+<% end %>
 
-<p>
-  <strong>Sidebar:</strong>
-  <%= @room.sidebar %>
-</p>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<%= render 'basic_layout' %>
