@@ -1,5 +1,21 @@
-<h1>New Post</h1>
+<% content_for :community_label, "Create Post" %>
 
-<%= render 'form', post: @post %>
+<% content_for :primary_content do %>
+  <div class="lg:p-10 pt-10 px4">
+    <h1 class="text-xl font-normal mb-6">New Post</h1>
+    <%= render 'form', post: @post %>
+  </div>
+<% end %>
 
-<%= link_to 'Back', posts_path %>
+<% content_for :secondary_content do %>
+  <div class="px-8 pt-6 pb-8">
+    <div class="text-center my-4">
+      <%= image_tag "submission.svg", class: "max-w-full w-1/2 inline" %>
+      <%# render_svg "post", styles: "w-1/2 m-auto mb-1 h-22" %>
+    </div>
+    <%= render "guidelines" %>
+  </div>
+
+<% end %>
+
+<%= render "basic_layout" %>

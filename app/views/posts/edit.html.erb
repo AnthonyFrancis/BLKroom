@@ -1,6 +1,13 @@
-<h1>Editing Post</h1>
+<%= content_for :primary_content do %>
+  <div class="lg:p-10 pt-10 pb-10 px-4">
+    <h1 class="text-xl font-normal mb-6">Editing post <span class="italic"><%= @post.title %></span></h1>
 
-<%= render 'form', post: @post %>
+    <%= render 'form', post: @post %>
+  </div>
+<% end %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<% content_for :secondary_content do %>
+  <%= render "guidelines" %>
+<% end %>
+
+<%= render "basic_layout" %>

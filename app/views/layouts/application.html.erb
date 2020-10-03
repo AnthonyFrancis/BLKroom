@@ -62,7 +62,7 @@
           <div class="mr-3">
             <% if !user_signed_in? %>
             <%= link_to "Login", new_user_session_path, class:"btn btn-outline btn-small mr-2" %>
-            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-gray btn-small" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-gray btn-small mr-2" %>
             <% end %>
             <% if user_signed_in? %>
                <%= link_to new_post_path  do %>
@@ -72,6 +72,10 @@
           </div>
 
           <% if user_signed_in? %>
+
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-gray-500 hover:text-white py-2 px-4 rounded-b flex items-center text-sm"   %>
+
+
             <div class="dropdown rounded bg-white border border-gray-400 text-gray-600 ml-1 hover:bg-gray-200">
               <div class="dropdown-content pt-2 pb-2 pl-3 pr-1">
                 <%= link_to "#", class: "js-dropdown-user-target no-underline flex justify-between text-gray-700 uppercase text-xs tracking-wide items-center font-semibold" do %>
