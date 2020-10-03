@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blkroom</title>
+    <title>BLKroom</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,500,600,700' %>
 
   </head>
 
@@ -30,7 +32,6 @@
         </div> -->
       <%# end %>
     <%# end %>
-
 
     <nav class="js-nav bg-white py-2 border-b border-gray-400" role="navigation" aria-label="
     main navigation">
@@ -123,9 +124,7 @@
       </div>
       </div>
     </nav>
-
-    <div class="container mx-auto py-6">
-      <%= yield %>
-    </div>
+    <%= content_for?(:content) ? yield(:content) : yield %>
+    <div class="js-notice dynamic-notice fadeInUp animated"></div>
   </body>
 </html>
