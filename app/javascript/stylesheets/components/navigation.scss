@@ -1,0 +1,39 @@
+.dropdown {
+  position: relative;
+  min-width: 220px;
+  z-index: 2;
+
+  .dropdown-list {
+    background: white;
+    min-width: 220px;
+    top: 34px;
+    left: -1px;
+    z-index: 1;
+
+    a:hover {
+      svg { fill: white; }
+    }
+  }
+
+
+  .dropdown-menu {
+    background: white;
+    top: 37px;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+
+    a:hover svg {
+      fill: white;
+    }
+
+    li:last-of-type a {
+      border-bottom-right-radius: .25rem;
+      border-bottom-left-radius: .25rem;
+    }
+  }
+}
+
+
+
