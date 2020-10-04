@@ -1,0 +1,11 @@
+<% if user_signed_in?  %>
+
+  <% unless current_user.rooms.include? @room %>
+    <%= link_to "Subscribe", room_subscriptions_path(@room), method: :post, remote: true, class:"btn btn-gray btn-small w-100 block text-center" %>
+  <% else %>
+    <%= link_to "Unsubscribe", room_subscriptions_path(@room), method: :delete, remote: true, class:"btn btn-outline btn-small w-100 block text-center"  %>
+  <% end %>
+
+<% else %>
+  <%= link_to "Subscribe", new_user_session_path, class:"btn btn-gray btn-small w-100 block text-center" %>
+<% end %>

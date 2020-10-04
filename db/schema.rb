@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_221457) do
+ActiveRecord::Schema.define(version: 2020_10_04_141130) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 2020_10_03_221457) do
     t.integer "user_id"
     t.index ["name"], name: "index_rooms_on_name", unique: true
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_subscriptions_on_room_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,4 +80,6 @@ ActiveRecord::Schema.define(version: 2020_10_03_221457) do
   add_foreign_key "posts", "rooms"
   add_foreign_key "posts", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "subscriptions", "rooms"
+  add_foreign_key "subscriptions", "users"
 end

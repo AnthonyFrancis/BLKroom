@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :rooms
-
-
+  resources :rooms do #
+    resource :subscriptions
+  end #
+  
   resources :posts do
     member do 
       put "vote", to: "posts#vote"
