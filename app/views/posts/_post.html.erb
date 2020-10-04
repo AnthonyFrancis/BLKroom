@@ -36,14 +36,15 @@
         <% end %>
       <% end %>
 
-    <%= link_to post do %>
-      <%= image_tag post.post_image.thumb.url, class: "ml-3", width: 80, height: 80 if post.post_image.present? %>
-    <% end if post.post_image.present? %>
+    <div class="ml-2">
+      <%= link_to post do %>
+        <%= image_tag post.post_image.large.url, class: "lg:w-24 w-full max-w-full" %>
+      <% end if post.post_image.present? %>
 
-    <%= link_to post do %>
-      <%= video_tag post.post_video if post.post_video.present? %>
-    <% end if post.post_video.present? %>
-
+      <%= link_to post do %>
+        <%= video_tag post.post_video.url, class: "lg:w-24 w-full max-w-full" %>
+      <% end if post.post_video.present? %>
+    </div>
 
     <div class="flex items-start flex-1 pl-4">      
       <div class="flex-1 w-full">
