@@ -34,6 +34,8 @@ gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem 'valid_url', '~> 0.0.4'
 gem 'inline_svg', '~> 1.7', '>= 1.7.1'
 gem 'ransack', '~> 2.3', '>= 2.3.2'
+gem 'figaro'
+gem 'fog-aws'
 
 
 group :development, :test do
