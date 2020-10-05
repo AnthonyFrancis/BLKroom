@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!, expect: [:show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, expect: [:show]
+  #before_action :correct_user, only: [:edit, :update, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json

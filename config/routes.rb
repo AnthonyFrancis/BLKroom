@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  
   resources :rooms do #
     resource :subscriptions
-  end
+  end #
 
   #get "posts/unsubscribe/:unsubscribe_hash" => "posts#unsubscribe", :as => 'comment_unsubscribe'
 
@@ -18,9 +19,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-
-  
 
   devise_for :users
   root to: "posts#index"
