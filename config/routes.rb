@@ -7,8 +7,15 @@ Rails.application.routes.draw do
     member do 
       put "vote", to: "posts#vote"
     end
-    resources :comments, module: :posts
-  end 
+    resources :comments, module: :posts do
+      member do 
+        put "vote", to: "posts#vote"
+      end
+    end
+  end
+
+
+  
 
   devise_for :users
   root to: "posts#index"

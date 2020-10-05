@@ -14,8 +14,6 @@ class Post < ApplicationRecord
 	validate :image_or_video
 	validate :url_or_content
 
-
-
 	acts_as_votable
 
 	private
