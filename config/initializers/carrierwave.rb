@@ -1,14 +1,21 @@
 CarrierWave.configure do |config|
 
-  config.fog_credentials = {
-    provider:              'AWS',                            # required
-    aws_access_key_id:     ENV["AWS_ACCESS_KEY"],            # required
-    aws_secret_access_key: ENV["AWS_SECRET_KEY"],            # required
-    region:                'us-east-1'                       # to match the carrierwave and bucket region
-  }
-  config.fog_directory = ENV["AWS_BUCKET"]                   # required
-  config.fog_public    = false
-  config.cache_dir     = "#{Rails.root}/tmp/uploads"         # To let CarrierWave work on Heroku
-  config.storage       = :fog
+  if Rails.env.development? || Rails.env.test?
+    config.storage = :file
+
+  else
+
+    config.fog_credentials = {
+      :provider               => 'AWS',
+      :aws_access_key_id      =>  'some_access_key_id',
+      :aws_secret_access_key  => 'some_secret_key',
+      :region                 => 'eu-west-1'
+
+    }
+
+    config.storage = :fog
+    config.fog_directory = 'bucket_name'
+
+  end
 
 end
