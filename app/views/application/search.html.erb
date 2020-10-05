@@ -6,7 +6,7 @@
 </div>
 ​
 <% if @post_results.exists? %>
-  <div class="w-full md:w-2/3 m-auto mb-6 container py-10 px-24 mx-auto">
+  <div class="w-full md:w-2/3 m-auto mb-6 container px-24 mx-auto">
     <div class="bg-white shadow rounded-sm">
       <h3 class="uppercase text-sm text-gray-700 tracking-wide font-semibold px-4 pt-2 border-t border-r border-l border-gray-200 rounded-t">Posts</h3>
       <%= render partial: "post_result", collection: @post_results %>
@@ -33,7 +33,7 @@
 <%# end %>
 ​ <!--#@room_results.empty? -->
 <% if @post_results.empty? %>
-  <div class="w-full md:w-2/3 m-auto mb-6 container py-10 px-24 mx-auto">
+  <div class="w-full md:w-2/3 m-auto mb-6 container px-24 mx-auto">
     <div class="bg-white shadow rounded-sm">
       <p class="text-xl p-6">Your search returned 0 results</p>
     </div>
