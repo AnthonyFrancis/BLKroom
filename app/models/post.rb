@@ -3,6 +3,8 @@ class Post < ApplicationRecord
 	mount_uploader :post_image, PostImageUploader
 	mount_uploader :post_video, PostVideoUploader
 
+	has_many :comments, as: :commentable
+
 	belongs_to :user
 	belongs_to :room
 

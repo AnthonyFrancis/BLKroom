@@ -1,0 +1,12 @@
+<div class="border-l-2 p-4 mb-4">
+	<%= render 'posts/posted_by', post: comment %>
+	<div class="text-black leading-normal text-sm"><%= simple_format comment.body %></div>
+
+	<% if user_signed_in? %>
+		<div data-controller="reply">
+			<div class="text-gray-800 leading-normal text-sm font-semibold"><%= link_to "Reply", "#", data: { action: "click->reply#toggle" } %></div>
+			<%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: comment.id, class: "hidden button", target: "reply.form" } %>
+		</div>
+	<% end %>
+	<%= render comment.comments %>
+</div>

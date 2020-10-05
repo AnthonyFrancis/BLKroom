@@ -1,5 +1,4 @@
 <% if user_signed_in?  %>
-
   <% unless current_user.rooms.include? @room %>
     <%= link_to "Subscribe", room_subscriptions_path(@room), method: :post, remote: true, class:"btn btn-gray btn-small w-100 block text-center" %>
   <% else %>

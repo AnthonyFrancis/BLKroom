@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :posts do
     member do 
       put "vote", to: "posts#vote"
-    end 
-    
+    end
+    resources :comments, module: :posts
   end 
 
   devise_for :users

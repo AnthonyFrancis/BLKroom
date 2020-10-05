@@ -1,0 +1,10 @@
+<div class="my-3">
+	<%= form_with model: [commentable, Comment.new], local: true, html: { class: local_assigns[:class], data:{ target: local_assigns[:target] } } do |form| %>
+	<div class="relative">
+		<%= form.text_area :body, placeholder: "What are your thought?", class: "input h-32 border border-gray-200 resize-none" %>
+
+		<%= form.hidden_field :parent_id, value: local_assigns[:parent_id] %>
+		<%= form.submit class: "btn btn-small btn-gray block w-full text-center mt02 lg:mt-0 lg:text-left lg:absolute lg:bottom-0 lg:right-0  lg:mb-2 lg:mr-2 lg:w-auto lg:inline-flex" %>
+	</div>	
+<% end %>
+</div>

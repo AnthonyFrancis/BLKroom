@@ -74,7 +74,13 @@
         <% end %>
 
         <div id="comments" class="mt-6 border-t border-gray-200">
-          <%# render @post.comments %>
+
+          <% if user_signed_in? %>
+            <p class="text-sm text-gray-600 my-2">comment as <%= link_to current_user.username, profile_path, class: "link" %></p>
+            <%= render partial: "comments/form", locals: { commentable: @post } %>
+          <% end %>
+
+          <%= render @post.comments.where(parent_id: nil) %>
         </div>
       </div>
     </div>
