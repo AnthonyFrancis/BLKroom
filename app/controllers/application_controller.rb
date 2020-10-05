@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 	def search
 	    q = params[:q]
-	    @room_results  = Room.ransack(name_cont: q).result
+	    #@room_results  = Room.ransack(name_cont: q).result
 	    @post_results = Post.ransack(title_cont: q).result
 	    #@user_results = User.ransack(username_cont: q).result
 	end
