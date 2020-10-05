@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :rooms do #
     resource :subscriptions
-  end #
+  end
+
+  #get "posts/unsubscribe/:unsubscribe_hash" => "posts#unsubscribe", :as => 'comment_unsubscribe'
+
+  get :search, controller: "application"
+
   
   resources :posts do
     member do 
@@ -9,7 +14,7 @@ Rails.application.routes.draw do
     end
     resources :comments, module: :posts do
       member do 
-        put "vote", to: "posts#vote"
+        put "vote", to: "comments#vote"
       end
     end
   end
