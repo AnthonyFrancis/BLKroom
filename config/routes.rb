@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :rooms do #
+  resources :rooms do
     resource :subscriptions
-  end #
+  end
 
   #get "posts/unsubscribe/:unsubscribe_hash" => "posts#unsubscribe", :as => 'comment_unsubscribe'
 

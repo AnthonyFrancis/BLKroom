@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
   has_many :subscriptions
   has_many :rooms, through: :subscriptions
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   validates_uniqueness_of :username
   validates_presence_of :username

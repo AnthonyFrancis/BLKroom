@@ -1,7 +1,8 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, expect: [:show]
-  #before_action :correct_user, only: [:edit, :update, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  respond_to :js, :html, :json
 
   # GET /rooms
   # GET /rooms.json
@@ -77,7 +78,9 @@ class RoomsController < ApplicationController
     end
 
     def correct_user
-      @room = current_user.rooms.find_by(id: params[:id])
-      redirect_to rooms_path, notice: "Naughty naughty...You're not authorised to edit this room." if @room.nil?
+      @room = Room.find_by(id: params[:id])
+      if current_user.id != @room.user_id
+        redirect_to rooms_path, notice: "Naughty naughty...You're not authorised to edit this post."
+      end
     end
 end
