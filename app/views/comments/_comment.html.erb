@@ -4,7 +4,10 @@
 
 	<% if user_signed_in? %>
 		<div data-controller="reply">
-			<div class="text-gray-800 leading-normal text-sm font-semibold"><%= link_to "Reply", "#", data: { action: "click->reply#toggle" } %></div>
+			<div class="text-gray-800 leading-normal text-sm font-semibold">
+				<%= link_to "Reply", "#", data: { action: "click->reply#toggle" } %>
+				<%= link_to "Delete", [comment.commentable, comment], method: :delete, data: {confirm: "Are you sure?"} if comment.user == current_user %>
+				</div>
 			<%= render partial: "comments/form", locals: { commentable: comment.commentable, parent_id: comment.id, class: "hidden button", target: "reply.form" } %>
 		</div>
 	<% end %>
