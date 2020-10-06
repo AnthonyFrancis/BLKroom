@@ -23,6 +23,8 @@
     <%# @days_from_this_week.each do |day| %>
         <%# day.strftime("%A") %>
     <%# end %>
+
+    
   
   <% content_for :primary_content do %>
     <% if @posts.exists? %>
@@ -36,8 +38,8 @@
       </div>
     <% end %>
   <% end %>
-  
-  </div>
+
+ 
 
 
   <% content_for :secondary_content do %>
@@ -105,6 +107,11 @@
 
 <% end %>
 
-
-
 <%= render "basic_layout" %>
+
+
+<div class="flex flex-wrap lg:px-24 container m-auto text-center">
+  <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6 inline">
+      <%== pagy_nav(@pagy) %>
+  </div>
+</div>

@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if user_signed_in?
-        @posts = current_user.subscribed_posts.order("created_at desc")
+        @pagy, @posts = pagy(current_user.subscribed_posts.order("created_at desc"), items: 8)
         @popular = Post.order(cached_votes_total: :desc)
         @random = Post.order("RANDOM()")
 
