@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!, expect: [:index, :show]
+  #before_action :authenticate_user!, expect: [:index, :show]
   before_action :set_room, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   respond_to :js, :html, :json
