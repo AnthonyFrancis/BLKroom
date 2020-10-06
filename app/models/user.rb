@@ -12,5 +12,13 @@ class User < ApplicationRecord
   validates_presence_of :username
 
   acts_as_voter
+
+
+  extend FriendlyId
+  friendly_id :username, use: :slugged
+
+  def should_generate_new_friendly_id?
+    username_changed?
+  end
   
 end

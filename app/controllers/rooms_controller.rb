@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!, expect: [:index, :show]
   before_action :set_room, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, expect: [:show]
   before_action :correct_user, only: [:edit, :update, :destroy]
   respond_to :js, :html, :json
 
@@ -69,7 +69,7 @@ class RoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
-      @room = Room.find(params[:id])
+      @room = Room.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -78,8 +78,8 @@ class RoomsController < ApplicationController
     end
 
     def correct_user
-      @room = Room.find_by(id: params[:id])
-      if current_user.id != @room.user_id
+      #@room = Room.find_by(id: params[:id])
+      unless current_user.id == @room.user_id
         redirect_to rooms_path, notice: "Naughty naughty...You're not authorised to edit this post."
       end
     end
