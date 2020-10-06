@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :rooms do
+  resources :rooms, :path => "blk" do
     resource :subscriptions
   end
 
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "posts#index"
-  resources :users, only: [:show], as: "profile"
+  resources :users, only: [:show], as: "profile", :path => "u"
   get "about" => "home#about"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
