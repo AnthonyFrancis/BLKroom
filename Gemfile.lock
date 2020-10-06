@@ -151,6 +151,7 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    pagy (3.8.3)
     pg (1.2.3)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
@@ -279,6 +280,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   mini_magick (~> 4.10, >= 4.10.1)
+  pagy (~> 3.5)
   pg
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.3)

@@ -37,6 +37,7 @@ gem 'ransack', '~> 2.3', '>= 2.3.2'
 gem 'figaro'
 gem 'fog-aws'
 gem 'friendly_id', '~> 5.4'
+gem 'pagy', '~> 3.5'
 
 
 group :development, :test do

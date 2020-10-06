@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
   def render_svg(name, styles: "fill-current text-gray-400", title: nil)
     filename = "#{name}.svg"
     title ||= name.underscore.humanize

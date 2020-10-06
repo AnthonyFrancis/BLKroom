@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy(Post.all, items: 8)
     @popular = Post.order(cached_votes_total: :desc)
     @random = Post.order("RANDOM()")
 
