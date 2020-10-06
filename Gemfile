@@ -36,6 +36,7 @@ gem 'inline_svg', '~> 1.7', '>= 1.7.1'
 gem 'ransack', '~> 2.3', '>= 2.3.2'
 gem 'figaro'
 gem 'fog-aws'
+gem 'friendly_id', '~> 5.4'
 
 
 group :development, :test do
