@@ -28,16 +28,18 @@
     <% if @posts.exists? %>
       <% render @posts %>
     <% else %>
-
       <div class="p-10 text-center">
         <%= render_svg "icons/empty", styles: "inline fill-current text-gray-400 mb-2" %>
         <p class="mb-4">Wow such empty...</p>
-        <%= link_to 'Creat a post', new_post_path, class: "btn btn-gray btn-small"%>
+        <%= link_to 'Creat a Post', new_post_path, class: "btn btn-gray btn-small"%> or 
+        <%= link_to 'Join a Room', rooms_path, class: "btn btn-gray btn-small"  %>
       </div>
     <% end %>
   <% end %>
   
   </div>
+
+
   <% content_for :secondary_content do %>
     <div class="px-8 pt-6 pb-8">
       <% unless user_signed_in? %>

@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validates_uniqueness_of :username
   validates_presence_of :username
 
+  has_many :subscribed_posts, through: :rooms, source: :posts
+
   acts_as_voter
 
 

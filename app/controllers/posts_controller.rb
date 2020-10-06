@@ -7,9 +7,15 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @pagy, @posts = pagy(Post.all, items: 8)
-    @popular = Post.order(cached_votes_total: :desc)
-    @random = Post.order("RANDOM()")
+    if user_signed_in?
+        @posts = current_user.subscribed_posts.order("created_at desc")
+        @popular = Post.order(cached_votes_total: :desc)
+        @random = Post.order("RANDOM()")
+
+    else
+        @pagy, @posts = pagy(Post.all, items: 8)
+        @random = Post.order("RANDOM()")
+    end
 
     today = Date.today # Today's date
     @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
