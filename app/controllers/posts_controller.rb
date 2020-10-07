@@ -102,7 +102,7 @@ class PostsController < ApplicationController
 
     def correct_user
       unless @post.user_id == current_user.id
-        redirect_to posts_path, notice: "Not authorized to edit this room"
+        redirect_to posts_path, notice: "Not authorized to edit this post"
 
         #you must return false to halt
         false
