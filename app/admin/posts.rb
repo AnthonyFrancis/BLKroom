@@ -17,8 +17,15 @@ ActiveAdmin.register Post do
 
 form do |f|
   f.inputs "Post Details", :multipart => true do
-    f.input :title 
-    #f.input :post_image, :as => :file, :hint => f.post_image? ? image_tag(f.object.post_image.url,width:100,height:100)
+    f.input :title
+    f.input :post_image, :as => :file, :hint => f.object.post_image.present? \
+      ? image_tag(f.object.post_image.url, width:100, height:100) 
+      : content_tag(:span, "No photo yet")
+      f.input :post_image_cache, :as => :hidden 
+    f.input :post_video, :as => :file, :hint => f.object.post_video.present? \
+      ? video_tag(f.object.post_video.url, width:100, height:100) 
+      : content_tag(:span, "No video yet")
+      f.input :post_video_cache, :as => :hidden 
     f.input :body
     f.input :url
     f.input :created_at
@@ -29,8 +36,11 @@ end
 
 index do
     selectable_column
-    column "photo" do |f|
+    column "Image" do |f|
       f.post_image? ? image_tag(f.post_image.url, height: '100') : content_tag(:span, "No photo yet")
+    end
+    column "Video" do |f|
+      f.post_video? ? video_tag(f.post_video.url, height: '100') : content_tag(:span, "No video yet")
     end
     column :title
     column :body
