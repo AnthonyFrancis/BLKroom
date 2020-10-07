@@ -101,7 +101,11 @@ class PostsController < ApplicationController
     end
 
     def correct_user
-      @posts = current_user.posts.find_by(id: params[:id])
-      redirect_to posts_path, notice: "Naughty naughty...You're not authorised to edit this post." if @posts.nil?
+      unless @post.user_id == current_user.id
+        redirect_to posts_path, notice: "Not authorized to edit this room"
+
+        #you must return false to halt
+        false
+      end
     end
 end

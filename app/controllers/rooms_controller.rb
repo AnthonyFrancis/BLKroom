@@ -80,9 +80,11 @@ class RoomsController < ApplicationController
     end
 
     def correct_user
-      #@room = Room.find_by(id: params[:id])
-      unless current_user.id == @room.user_id
-        redirect_to rooms_path, notice: "Naughty naughty...You're not authorised to edit this post."
+      unless @room.user_id == current_user.id
+        redirect_to rooms_path, notice: "Not authorized to edit this room"
+
+        #you must return false to halt
+        false
       end
     end
 end
