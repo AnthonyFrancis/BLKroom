@@ -77,7 +77,7 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
 
     respond_to do |format|
       if params[:format] == "vote"
