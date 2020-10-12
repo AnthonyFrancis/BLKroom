@@ -9,7 +9,10 @@
       <!--<div class="post-voting text-xs pr-2">
         <%# render 'voting', post: @post %>
       </div> -->
-     
+
+    <div id="votes">
+      <%= render "votes", post: @post %>
+    </div>
   
     <div class="submission-content pl-3">
         <%= render "posted_by", post: @post %>

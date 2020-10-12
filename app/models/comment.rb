@@ -5,8 +5,6 @@ class Comment < ApplicationRecord
   
   validates_presence_of :body
 
-  acts_as_votable
-
   def comments
     Comment.where(commentable: commentable, parent_id: id)
   end

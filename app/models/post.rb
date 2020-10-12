@@ -8,13 +8,13 @@ class Post < ApplicationRecord
 	belongs_to :user
 	belongs_to :room
 
+	has_many :votes
+
 	validates :title, presence: true
 	validates :body, length: { maximum: 8000 }
 	validates :url, url: true, allow_blank: true
 	validate :image_or_video
 	validate :url_or_content
-
-	acts_as_votable
 
 	extend FriendlyId
   	friendly_id :title, use: :slugged

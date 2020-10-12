@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   
   resources :posts do
+    resource :vote, module: :posts
     resources :comments, module: :posts do
     end
   end

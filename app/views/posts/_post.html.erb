@@ -1,9 +1,10 @@
 <div class="border-b border-r border-l">
   <div class="p-2 pt-2 pb-2 flex items-start flex-wrap hover:bg-gray-100">
-  
-      <%# render "posts/voting", post: post %>
-      
 
+    <div id="votes">
+      <%= render "votes", post: post %>
+    </div>
+    
     <div class="ml-2">
       <%= link_to post do %>
         <%= image_tag post.post_image.large.url, class: "lg:w-24 w-full max-w-full" %>
