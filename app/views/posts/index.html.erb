@@ -103,7 +103,7 @@
                   </div>
                   
                       <div class="bg-white shadow rounded-sm">
-                        <% hash_elements.last.each do |post| %>
+                        <% hash_elements.last.reverse_each do |post| %>
                           <%= render 'posts/post', post: post %>
                         <% end %>
                       </div>
