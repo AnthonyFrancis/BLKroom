@@ -67,7 +67,10 @@
       Popular discussions
   </div>
 
-  <div class="rounded-tl-lg lg:px-24 rounded-tr-lg container m-auto clearfix">
+
+  <% if @grouped_posts.present? && @grouped_posts[true].present? %>
+
+    <div class="rounded-tl-lg lg:px-24 rounded-tr-lg container m-auto clearfix">
       <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
         <h5 class="text-xl font-bold float-left">Today</h5>
         <div class="rounded-full float-right">
@@ -83,29 +86,40 @@
       </div>
     </div>
     
-  <% content_for :primary_content do %>
-
-    <% if @grouped_posts.present? && @grouped_posts[true].present? %>
-      <h3> Today </h3>
-       <% @grouped_posts[true].each do |post| %>
-          <%= post.title %>
-          <%= post.created_at.strftime('%I:%M %p') %>
-       <% end %>
-    <% end %>
-
-    <% if @post_wise_sorted_alerts.present? %>
-      <% @post_wise_sorted_alerts.reverse_each do |hash_elements|%>
-      <h3> <%= Date::DAYNAMES[hash_elements.first] %> </h3>
-      <% hash_elements.last.each do |post| %>
-        <%= post.title %>
-        <%= post.created_at.strftime('%b %d') %> 
-        <br />
-      <% end %> 
-      <br />
-      <% end %>
-    <% end %>
+    <div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-3 container m-auto">
+      <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+        <div class="bg-white shadow rounded-sm">
+          <% @grouped_posts[true].each do |post| %>
+                <%= post.title %>
+                <%= post.body %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
 
+  <% end %>
+
+  <% if @post_wise_sorted_alerts.present? %>
+
+      <% @post_wise_sorted_alerts.reverse_each do |hash_elements|%>
+        <div class="rounded-tl-lg lg:px-24 rounded-tr-lg container m-auto clearfix">
+          <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+            <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-3 container m-auto">
+          <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+            <div class="bg-white shadow rounded-sm">
+              <% hash_elements.last.each do |post| %>
+                <%= post.title %>
+                <%= post.body %> 
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
 
   <% content_for :secondary_content do %>
