@@ -131,6 +131,8 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (5.2.1)
+      activesupport (>= 5)
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
@@ -317,6 +319,7 @@ DEPENDENCIES
   figaro
   fog-aws
   friendly_id (~> 5.4)
+  groupdate
   inline_svg (~> 1.7, >= 1.7.1)
   jbuilder (~> 2.7)
   listen (~> 3.2)

@@ -84,8 +84,29 @@
     </div>
     
   <% content_for :primary_content do %>
-        <% render @posts %>
+
+    <% if @grouped_posts.present? %>
+      <h3> Today </h3>
+       <% @grouped_posts[true].each do |post| %>
+          <%= post.title %>
+          <%= post.created_at.strftime('%I:%M %p') %>
+       <% end %>
+    <% end %>
+
+    <% if @post_wise_sorted_alerts.present? %>
+      <% @post_wise_sorted_alerts.reverse_each do |hash_elements|%>
+      <h3> <%= Date::DAYNAMES[hash_elements.first] %> </h3>
+      <% hash_elements.last.each do |post| %>
+        <%= post.title %>
+        <%= post.created_at.strftime('%b %d') %> 
+        <br />
+      <% end %> 
+      <br />
+      <% end %>
+    <% end %>
   <% end %>
+
+
 
   <% content_for :secondary_content do %>
     <div class="px-8 pt-6 pb-8">
@@ -110,6 +131,6 @@
 
 <div class="flex flex-wrap lg:px-24 container m-auto text-center">
   <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6 inline">
-      <%== pagy_nav(@pagy) %>
+      <%# pagy_nav(@pagy) %>
   </div>
 </div>
