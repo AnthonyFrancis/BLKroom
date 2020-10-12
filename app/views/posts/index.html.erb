@@ -96,7 +96,7 @@
 
               <% if @post_wise_sorted_alerts.present? %>
                 <% @post_wise_sorted_alerts.reverse_each do |hash_elements|%>
-                  <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3">
+                  <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
                     <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
                       <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
                     </div>
