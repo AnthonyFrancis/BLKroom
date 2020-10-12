@@ -88,7 +88,7 @@
             <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
               <% if @grouped_posts.present? && @grouped_posts[true].present? %>
                 <div class="bg-white shadow rounded-sm">
-                  <% @grouped_posts[true].each do |post| %>
+                  <% @grouped_posts[true].reverse_each do |post| %>
                     <%= render 'posts/post', post: post %>
                   <% end %>
                 </div>
