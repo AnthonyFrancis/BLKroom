@@ -83,55 +83,67 @@
     </div>
   </div>
 
-  <div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-3 container m-auto">
-    <% if @grouped_posts.present? && @grouped_posts[true].present? %>
-        <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-          <div class="bg-white shadow rounded-sm">
-            <% @grouped_posts[true].each do |post| %>
-              <%= render 'posts/post', post: post %>
-            <% end %>
-          </div>
-        </div>
-    <% end %>
+    <div class="container lg:px-24 m-auto p-3 text-grey-darkest">
+         <div class="flex flex-wrap -mx-2 mb-8">
+            <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+              <% if @grouped_posts.present? && @grouped_posts[true].present? %>
+                <div class="bg-white shadow rounded-sm">
+                  <% @grouped_posts[true].each do |post| %>
+                    <%= render 'posts/post', post: post %>
+                  <% end %>
+                </div>
+              <% end %>
 
-    <div class="w-full md:w-1/3">
-      <div class="bg-white shadow rounded-sm">
-        <div class="px-8 pt-6 pb-8">
-          <% unless user_signed_in? %>
-            <%= image_tag "illustration.svg", class: "max-w-full" %>
-            <h3>Explore</h3>
-            <p class="text-gray-600 text-sm">Find your breaking news, sports, TV fan theories, or never-ending streams of cute animals.</p>
-            <%= link_to "How BLKroom works", about_path, class: "btn btn-small btn-white my-2 block text-center" %>
-          <% else %>
-            <h3>Home</h3>
-            <p class="text-gray-600 text-sm">Your personal BLKroom frontpage. Come here to check in with your favorite communities.</p>
-            <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-white my-2 block text-center"  %>
-            <%= link_to 'Create Community', new_room_path, class: "btn btn-small btn-gray my-2 block text-center"  %>
-          <% end %>
-        </div>
-      </div>
+              <% if @post_wise_sorted_alerts.present? %>
+                <% @post_wise_sorted_alerts.reverse_each do |hash_elements|%>
+                  <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3">
+                    <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+                      <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
+                    </div>
+                  </div>
+                  
+                      <div class="bg-white shadow rounded-sm">
+                        <% hash_elements.last.each do |post| %>
+                          <%= render 'posts/post', post: post %>
+                        <% end %>
+                      </div>
+                <% end %>
+              <% end %>
+
+
+            </div>
+            <div class="w-full md:w-1/3">
+                <div class="bg-white shadow rounded-sm">
+                  <div class="px-8 pt-6 pb-8">
+                    <% unless user_signed_in? %>
+                      <%= image_tag "illustration.svg", class: "max-w-full" %>
+                      <h3>Explore</h3>
+                      <p class="text-gray-600 text-sm">Find your breaking news, sports, TV fan theories, or never-ending streams of cute animals.</p>
+                      <%= link_to "How BLKroom works", about_path, class: "btn btn-small btn-white my-2 block text-center" %>
+                    <% else %>
+                      <h3>Home</h3>
+                      <p class="text-gray-600 text-sm">Your personal BLKroom frontpage. Come here to check in with your favorite communities.</p>
+                      <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-white my-2 block text-center"  %>
+                      <%= link_to 'Create Community', new_room_path, class: "btn btn-small btn-gray my-2 block text-center"  %>
+                    <% end %>
+                  </div>
+                </div>
+            </div>
+         </div>
     </div>
 
-    <% if @post_wise_sorted_alerts.present? %>
-      <% @post_wise_sorted_alerts.reverse_each do |hash_elements|%>
-        <div class="rounded-tl-lg lg:px-24 rounded-tr-lg container m-auto clearfix">
-          <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-            <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
-          </div>
-        </div>
-        
-          <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-            <div class="bg-white shadow rounded-sm">
-              <% hash_elements.last.each do |post| %>
-                <%= render 'posts/post', post: post %>
-              <% end %>
-            </div>
-          </div>
-      <% end %>
-    <% end %>
+
+  <div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-3 container m-auto">
+ 
+
     
+
   </div>
 <% end %>
+
+ <div class="w-full md:w-1/3">
+    
+  </div>
 
 <%= render "basic_layout" %>
 
