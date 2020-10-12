@@ -85,7 +85,7 @@
     
   <% content_for :primary_content do %>
 
-    <% if @grouped_posts.present? %>
+    <% if @grouped_posts.present? && @grouped_posts[true].present? %>
       <h3> Today </h3>
        <% @grouped_posts[true].each do |post| %>
           <%= post.title %>
