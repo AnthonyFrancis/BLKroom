@@ -21,18 +21,6 @@ class CommentsController < ApplicationController
     redirect_to @commentable
   end
 
-  def vote
-    @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      if params[:format] == "vote"
-        @comment.liked_by current_user
-      elsif params[:format] == "unvote"
-        @comment.unliked_by current_user
-      end
-    end
-  end
-
   private
 
   def comment_params
