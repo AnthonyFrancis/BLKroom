@@ -90,50 +90,7 @@
       <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
         <div class="bg-white shadow rounded-sm">
           <% @grouped_posts[true].each do |post| %>
-            
-            <div class="border-b border-r border-l">
-              <div class="p-2 pt-2 pb-2 flex items-start flex-wrap hover:bg-gray-100">
-
-                <div id="votes">
-                  <%= render "posts/votes", post: post %>
-                </div>
-
-                <div class="ml-2">
-                  <%= link_to post do %>
-                    <%= image_tag post.post_image.large.url, class: "lg:w-24 w-full max-w-full" %>
-                  <% end if post.post_image.present? %>
-
-                  <%= link_to post do %>
-                    <%= video_tag post.post_video.url, class: "lg:w-24 w-full max-w-full" %>
-                  <% end if post.post_video.present? %>
-                </div>
-
-                <div class="flex items-start flex-1 pl-4">      
-                  <div class="flex-1 w-full">
-                    <h3 class="mb-0 flex flex-wrap items-center text-base">
-                      <% post_link = post.url.present? ? post.url : post %>
-                      <%= link_to post.title, post_link, class: "no-underline font-bold hover:text-gray-600" %>
-
-                      <% if post.url %>
-                        <span class="pl-2 text-xs font-normal font-mono text-blue-400 tracking-tight">
-                          <%= link_to truncate(post.url, length: 18), post.url, class:"no-underline" %>
-                        </span>
-                      <% end %>
-                    </h3>
-
-                    <%= link_to room_path(post.room), class:"no-underline text-gray-700 font-normal hover:text-gray-700 hover:underline text-sm inline-block" do %>
-                        blk/<%= post.room.name %>
-                    <% end %>
-
-                    <span class="mx-1 inline-block text-sm text-gray-700">•</span>
-
-                    <%= render 'posts/posted_by', post: post %>
-                    <%= render 'posts/actions', post: post %>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            <%= render 'posts/post', post: post %>
           <% end %>
         </div>
       </div>
@@ -155,50 +112,7 @@
           <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
             <div class="bg-white shadow rounded-sm">
               <% hash_elements.last.each do |post| %>
-              
-                <div class="border-b border-r border-l">
-                  <div class="p-2 pt-2 pb-2 flex items-start flex-wrap hover:bg-gray-100">
-
-                    <div id="votes">
-                      <%= render "posts/votes", post: post %>
-                    </div>
-
-                    <div class="ml-2">
-                      <%= link_to post do %>
-                        <%= image_tag post.post_image.large.url, class: "lg:w-24 w-full max-w-full" %>
-                      <% end if post.post_image.present? %>
-
-                      <%= link_to post do %>
-                        <%= video_tag post.post_video.url, class: "lg:w-24 w-full max-w-full" %>
-                      <% end if post.post_video.present? %>
-                    </div>
-
-                    <div class="flex items-start flex-1 pl-4">      
-                      <div class="flex-1 w-full">
-                        <h3 class="mb-0 flex flex-wrap items-center text-base">
-                          <% post_link = post.url.present? ? post.url : post %>
-                          <%= link_to post.title, post_link, class: "no-underline font-bold hover:text-gray-600" %>
-
-                          <% if post.url %>
-                            <span class="pl-2 text-xs font-normal font-mono text-blue-400 tracking-tight">
-                              <%= link_to truncate(post.url, length: 18), post.url, class:"no-underline" %>
-                            </span>
-                          <% end %>
-                        </h3>
-
-                        <%= link_to room_path(post.room), class:"no-underline text-gray-700 font-normal hover:text-gray-700 hover:underline text-sm inline-block" do %>
-                            blk/<%= post.room.name %>
-                        <% end %>
-
-                        <span class="mx-1 inline-block text-sm text-gray-700">•</span>
-
-                        <%= render 'posts/posted_by', post: post %>
-                        <%= render 'posts/actions', post: post %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+                <%= render 'posts/post', post: post %>
               <% end %>
             </div>
           </div>
