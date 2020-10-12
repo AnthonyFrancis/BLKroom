@@ -76,19 +76,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def vote
-    @post = Post.friendly.find(params[:id])
-
-    respond_to do |format|
-      if params[:format] == "vote"
-        @post.liked_by current_user
-      elsif params[:format] == "unvote"
-        @post.unliked_by current_user
-        format.html {redirect_to @post}
-      end
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

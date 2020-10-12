@@ -10,38 +10,6 @@
         <%# render 'voting', post: @post %>
       </div> -->
      
-        <% if user_signed_in? %>
-          <% if current_user.liked? @post %>
-            <%=  link_to vote_post_path(@post, 'unvote'), class: "preached-btn btn-white py-8", method: :put, remote: :true do %>
-              <div class="py-2 px-1">
-                  <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-orange-600 inline" %>
-
-                  <div class="vote_count text-center text-orange-600 font-medium text-sm">
-                    <%= @post.get_likes.size %>
-                  </div>
-              </div>    
-            <% end %>
-          <% else %>
-            <%= link_to vote_post_path(@post, 'vote'), class: "preach-btn btn-white py-8", method: :put, remote: :true do %>
-                <div class="py-3 px-1">
-                    <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-gray-600" %>
-                  <div class="vote_count text-center font-medium text-sm">
-                    <%= @post.get_likes.size %>
-                  </div>
-                </div>
-            <% end %>
-          <% end %>
-        <% else %>
-          <%=  link_to new_user_session_path, class: "preached-btn btn-white py-8" do %>
-            <div class="py-2 px-1">
-                <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-gray-600" %>
-
-                <div class="vote_count text-center text-gray-600 font-medium text-sm">
-                  <%= @post.get_likes.size %>
-                </div>
-            </div>    
-          <% end %>
-        <% end %>
   
     <div class="submission-content pl-3">
         <%= render "posted_by", post: @post %>

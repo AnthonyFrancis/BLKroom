@@ -12,13 +12,7 @@ Rails.application.routes.draw do
 
   
   resources :posts do
-    member do 
-      put "vote", to: "posts#vote"
-    end
     resources :comments, module: :posts do
-      member do 
-        put "vote", to: "comments#vote"
-      end
     end
   end
 
