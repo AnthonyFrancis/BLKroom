@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
+      PostMailer.with(comment: @comment, post: @post).new_response.deliver_now
       redirect_to @commentable
     else
       redirect_to @commentable, alert: "Something went wrong"
