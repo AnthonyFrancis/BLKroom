@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  before_create :add_unsubscribe_hash
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -26,4 +29,11 @@ class User < ApplicationRecord
   def votes?(post)
     post.votes.where(user_id: id).any?
   end
+
+  private
+
+  def add_unsubscribe_hash
+    self.unsubscribe_hash = SecureRandom.hex
+  end
+
 end

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get :search, controller: "application"
 
+  get "posts/unsubscribe/:unsubscribe_hash" => "posts#unsubscribe", :as => 
+  "comment_unsubscribe"
   
   resources :posts do
     resource :vote, module: :posts

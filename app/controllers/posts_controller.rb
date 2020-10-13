@@ -85,6 +85,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def unsubscribe
+    user = User.find_by_unsubscribe_hash(params[:unsubscribe_hash])
+    user.update_attribute(:comment_subscription, false)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
