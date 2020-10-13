@@ -6,6 +6,8 @@ class PostMailer < ApplicationMailer
     @comment = params[:comment]
     @post = params[:post]
 
-    mail to: @comment.user.email, subject: "New response on: #{@comment.body}"    
+    if @comment.user.comment_subscription?
+      mail to: @comment.user.email, subject: "New response on: #{@comment.body}"
+    end    
   end
 end
