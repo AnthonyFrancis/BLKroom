@@ -9,11 +9,11 @@ class PostsController < ApplicationController
   def index
     if user_signed_in?
         @pagy, @posts = pagy(current_user.subscribed_posts.order("created_at desc"), items: 8)
-        @popular = Post.order(cached_votes_total: :desc)
+        @popular = current_user.subscribed_posts.order(votes_count: :desc)
         @random = Post.order("RANDOM()")
 
     else
-        @posts = Post.all
+        @posts = Post.order("created_at asc")
 
         #Retrives all post and divides into two groups todays messages and other messages
         @grouped_posts = @posts.group_by { |t| t.created_at.to_date == DateTime.now.to_date }
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :url, :post_image, :post_video, :room_id)
+      params.require(:post).permit(:title, :body, :url, :post_image, :post_video, :room_id, :votes_count)
     end
 
     def correct_user

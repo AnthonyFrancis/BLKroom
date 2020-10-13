@@ -26,7 +26,7 @@
   
   <% content_for :primary_content do %>
     <% if @posts.exists? %>
-      <% render @posts %>
+      <% render @popular %>
     <% else %>
       <div class="p-10 text-center">
         <%= render_svg "icons/empty", styles: "inline fill-current text-gray-400 mb-2" %>
@@ -103,7 +103,7 @@
                   </div>
                   
                       <div class="bg-white shadow rounded-sm">
-                        <% hash_elements.last.reverse_each do |post| %>
+                        <% hash_elements.last.each do |post| %>
                           <%= render 'posts/post', post: post %>
                         <% end %>
                       </div>

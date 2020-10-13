@@ -23,6 +23,12 @@ class Post < ApplicationRecord
    		title_changed?
   	end
 
+  	scope :most_voted, -> do
+	    where(created_at: (Time.now - 7.days)..Time.now ) # created 7 days ago
+	    .order('votes_count DESC')                        # ordered by votes_count
+	    .limit(100)                                       # first 100
+	end
+
 	private
 
 	def image_or_video
