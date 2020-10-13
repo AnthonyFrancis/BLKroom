@@ -9,11 +9,11 @@ class PostsController < ApplicationController
   def index
     if user_signed_in?
         @pagy, @posts = pagy(current_user.subscribed_posts.order("created_at desc"), items: 8)
-        @popular = current_user.subscribed_posts.order(votes_count: :desc)
+        @pagy, @popular = pagy(current_user.subscribed_posts.order(votes_count: :desc), items: 13)
         @random = Post.order("RANDOM()")
 
     else
-        @posts = Post.order("created_at asc")
+        @pagy, @posts = pagy(Post.order("created_at asc"), items: 13)
 
         #Retrives all post and divides into two groups todays messages and other messages
         @grouped_posts = @posts.group_by { |t| t.created_at.to_date == DateTime.now.to_date }
