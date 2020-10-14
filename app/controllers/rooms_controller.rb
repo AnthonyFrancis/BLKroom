@@ -2,6 +2,8 @@ class RoomsController < ApplicationController
   #before_action :authenticate_user!, expect: [:index, :show]
   before_action :set_room, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :admins_rights, only: [:new]
+  
   respond_to :js, :html, :json
 
   # GET /rooms
@@ -82,6 +84,15 @@ class RoomsController < ApplicationController
     def correct_user
       unless @room.user_id == current_user.id
         redirect_to rooms_path, notice: "Not authorized to edit this room"
+
+        #you must return false to halt
+        false
+      end
+    end
+
+    def admins_rights
+      unless current_user.admin_rights == true
+        redirect_to rooms_path, notice: "Not authorized to create a room"
 
         #you must return false to halt
         false

@@ -10,7 +10,10 @@
 
 <% content_for :secondary_content do %>
   <div class="px-8 pt-6 pb-8">
-    <%= link_to 'Create Room', new_room_path, class: "btn btn-small btn-gray my-2 block text-center" if user_signed_in? %>
+
+    <% if current_user.admin_rights == true %>
+      <%= link_to 'Create Room', new_room_path, class: "btn btn-small btn-gray my-2 block text-center" if user_signed_in? %>
+    <% end %>
   </div>
 <% end %>
 
