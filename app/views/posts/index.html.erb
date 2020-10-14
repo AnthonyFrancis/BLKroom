@@ -4,59 +4,87 @@
       Popular discussions
   </div>
 
-    <div class="rounded-tl-lg lg:px-24 rounded-tr-lg container m-auto clearfix">
-      <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-        <h5 class="text-xl font-bold float-left">Today</h5>
-        <div class="rounded-full float-right">
-          <!--<ul id="nav-tab" class="list-none p-0 pt-2 profile-tabs">
-            <li class="inline-block mr-2 active" data-tab="profile_submissions">
-              <%= link_to "Popular", "#profile_posts", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
-            </li>| 
-            <li class="inline-block mr-2" data-tab="profile_comments">
-              <%= link_to "Newest", "#profile_comments", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
-            </li>
-          </ul> -->
+
+
+  <div class="container lg:px-24 m-auto p-3 text-grey-darkest">
+       <div class="flex flex-wrap -mx-2 mb-8">
+
+        <% if @posts.exists? %>
+          <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+            <% if @grouped_posts.present? && @grouped_posts[true].present? %>
+
+
+            <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3">
+              <div class="w-full pr-0 mb-6">
+                <h5 class="text-xl font-bold float-left ml-2">Today</h5>
+                <div class="rounded-full float-right">
+                  <ul id="nav-tab" class="list-none p-0 pt-2 profile-tabs">
+                    <li class="inline-block mr-2 active" data-tab="profile_submissions">
+                      <%= link_to "Popular", "#profile_posts", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                    </li>| 
+                    <li class="inline-block mr-2" data-tab="profile_comments">
+                      <%= link_to "Newest", "#profile_comments", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+              <div class="bg-white shadow rounded-sm">
+                <% @grouped_posts[true].each do |post| %>
+                  <%= render 'posts/post', post: post %>
+                <% end %>
+              </div>
+            <% end %>
+
+            <% if @post_wise_sorted_alerts.present? %>
+              <% @post_wise_sorted_alerts.each do |hash_elements|%>
+                <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
+                  <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+                    <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
+                  </div>
+                </div>
+                
+                    <div class="bg-white shadow rounded-sm">
+                      <% hash_elements.last.reverse_each do |post| %>
+                        <%= render 'posts/post', post: post %>
+                      <% end %>
+                    </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+            <div class="bg-white shadow rounded-sm">
+              <div class="p-10 text-center">
+                <%= render_svg "icons/empty", styles: "inline fill-current text-gray-400 mb-2" %>
+                <p class="mb-4">Wow such empty...</p>
+                <%= link_to 'Creat a Post', new_post_path, class: "btn btn-gray btn-small"%> or 
+                <%= link_to 'Join a Room', rooms_path, class: "btn btn-gray btn-small"  %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="w-full md:w-1/3">
+            <div class="bg-white shadow rounded-sm">
+              <div class="px-8 pt-6 pb-8">
+                <% unless user_signed_in? %>
+                  <%= image_tag "illustration.svg", class: "max-w-full" %>
+                  <h3>Explore</h3>
+                  <p class="text-gray-600 text-sm">Find your breaking news, sports, TV fan theories, or never-ending streams of cute animals.</p>
+                  <%= link_to "How BLKroom works", about_path, class: "btn btn-small btn-white my-2 block text-center" %>
+                <% else %>
+                  <h3>Home</h3>
+                  <p class="text-gray-600 text-sm">Your personal BLKroom frontpage. Come here to check in with your favorite communities.</p>
+                  <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-white my-2 block text-center"  %>
+                  <%= link_to 'Join a Room', rooms_path, class: "btn btn-small btn-gray my-2 block text-center"  %>
+                <% end %>
+              </div>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <%# @days_from_this_week.each do |day| %>
-        <%# day.strftime("%A") %>
-    <%# end %>
-  
-  <% content_for :primary_content do %>
-    <% if @posts.exists? %>
-      <% render @posts %>
-    <% else %>
-      <div class="p-10 text-center">
-        <%= render_svg "icons/empty", styles: "inline fill-current text-gray-400 mb-2" %>
-        <p class="mb-4">Wow such empty...</p>
-        <%= link_to 'Creat a Post', new_post_path, class: "btn btn-gray btn-small"%> or 
-        <%= link_to 'Join a Room', rooms_path, class: "btn btn-gray btn-small"  %>
-      </div>
-    <% end %>
-  <% end %>
-
- 
-
-
-  <% content_for :secondary_content do %>
-    <div class="px-8 pt-6 pb-8">
-      <% unless user_signed_in? %>
-        <%= image_tag "illustration.svg", class: "max-w-full" %>
-        <h3>Explore</h3>
-        <p class="text-gray-600 text-sm">Find your breaking news, sports, TV fan theories, or never-ending streams of cute animals.</p>
-        <%= link_to "How Webbit works", "#", class: "btn btn-small btn-white my-2 block text-center" %>
-      <% else %>
-        <h3>Home</h3>
-        <p class="text-gray-600 text-sm">Your personal BLKroom frontpage. Come here to check in with your favorite communities.</p>
-        <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-white my-2 block text-center"  %>
-        <%#link_to 'Create Room', new_room_path, class: "btn btn-small btn-gray my-2 block text-center"  %>
-        <%= link_to 'Join a Room', rooms_path, class: "btn btn-small btn-gray my-2 block text-center"  %>
-      <% end %>
-    </div>
-  <% end %>
-
+       </div>
+  </div>
 
 <% else %>
 
@@ -138,9 +166,7 @@
 
 <% end %>
 
-
-<%= render "basic_layout" %>
-
+<%# render "basic_layout" %>
 
 <div class="flex flex-wrap lg:px-24 container m-auto text-center">
   <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6 inline">
