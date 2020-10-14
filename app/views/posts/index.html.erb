@@ -67,35 +67,39 @@
       Popular discussions
   </div>
 
-  <div class="rounded-tl-lg lg:px-24 rounded-tr-lg container m-auto clearfix">
-    <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-      <h5 class="text-xl font-bold float-left">Today</h5>
-      <div class="rounded-full float-right">
-        <!--<ul id="nav-tab" class="list-none p-0 pt-2 profile-tabs">
-          <li class="inline-block mr-2 active" data-tab="profile_submissions">
-            <%= link_to "Popular", "#profile_posts", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
-          </li>| 
-          <li class="inline-block mr-2" data-tab="profile_comments">
-            <%= link_to "Newest", "#profile_comments", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
-          </li> -->
-        </ul>
-      </div>
-    </div>
-  </div>
+  
 
     <div class="container lg:px-24 m-auto p-3 text-grey-darkest">
          <div class="flex flex-wrap -mx-2 mb-8">
             <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
               <% if @grouped_posts.present? && @grouped_posts[true].present? %>
+
+
+              <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix">
+                <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+                  <h5 class="text-xl font-bold float-left">Today</h5>
+                  <div class="rounded-full float-right">
+                    <ul id="nav-tab" class="list-none p-0 pt-2 profile-tabs">
+                      <li class="inline-block mr-2 active" data-tab="profile_submissions">
+                        <%= link_to "Popular", "#profile_posts", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                      </li>| 
+                      <li class="inline-block mr-2" data-tab="profile_comments">
+                        <%= link_to "Newest", "#profile_comments", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
                 <div class="bg-white shadow rounded-sm">
-                  <% @grouped_posts[true].all? do |post| %>
+                  <% @grouped_posts[true].each do |post| %>
                     <%= render 'posts/post', post: post %>
                   <% end %>
                 </div>
               <% end %>
 
               <% if @post_wise_sorted_alerts.present? %>
-                <% @post_wise_sorted_alerts.reverse_each do |hash_elements|%>
+                <% @post_wise_sorted_alerts.each do |hash_elements|%>
                   <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
                     <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
                       <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
@@ -103,7 +107,7 @@
                   </div>
                   
                       <div class="bg-white shadow rounded-sm">
-                        <% hash_elements.last.each do |post| %>
+                        <% hash_elements.last.reverse_each do |post| %>
                           <%= render 'posts/post', post: post %>
                         <% end %>
                       </div>
@@ -140,6 +144,6 @@
 
 <div class="flex flex-wrap lg:px-24 container m-auto text-center">
   <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6 inline">
-      <%== pagy_nav(@pagy) %>
+      <%#== pagy_nav(@pagy) %> <%= will_paginate %>
   </div>
 </div>

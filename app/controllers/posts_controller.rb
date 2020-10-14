@@ -8,22 +8,27 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if user_signed_in?
-        @pagy, @posts = pagy(current_user.subscribed_posts.order("created_at desc"), items: 8)
+        @posts = current_user.subscribed_posts.paginate(page: params[:page], per_page: 10).order("created_at desc")
         @pagy, @popular = pagy(current_user.subscribed_posts.order(votes_count: :desc), items: 13)
         @random = Post.order("RANDOM()")
-
+        respond_to do |format|
+          format.html
+          format.js
+        end
     else
-        @pagy, @posts = pagy(Post.order("created_at asc"), items: 13)
+        @posts = Post.paginate(page: params[:page], per_page: 10).order("created_at desc")
 
         #Retrives all post and divides into two groups todays messages and other messages
         @grouped_posts = @posts.group_by { |t| t.created_at.to_date == DateTime.now.to_date }
+        respond_to do |format|
+          format.html
+          format.js
+        end
 
         if @grouped_posts[false].present?
           #Create day wise groups of posts      
           @post_wise_sorted_alerts = @grouped_posts[false].group_by { |t| t.created_at.wday}
         end  
-
-        @random = Post.order("RANDOM()")
     end
 
     today = Date.today # Today's date

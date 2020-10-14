@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
 	#include VoteCountable
+	self.per_page = 10
+	
 	mount_uploader :post_image, PostImageUploader
 	mount_uploader :post_video, PostVideoUploader
 
