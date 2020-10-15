@@ -49,3 +49,6 @@ sendgrid.env
 sendgrid.env
 sendgrid.env
 sendgrid.env
+
+/config/credentials/development.key
+sendgrid.env
