@@ -21,23 +21,23 @@
 
   <body class="bg-gray-200 relative h-screen overflow-x-hidden">
 
-    <%# flash.each do |type, message| %>
-      <%# if type == "alert" %>
-        <!-- <div class="bg-red-500">
+    <% flash.each do |type, message| %>
+      <% if type == "alert" %>
+        <div class="bg-red-500">
           <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans">
-            <%# message %>
+            <%= message %>
           </div>
-        </div> -->
-      <%# end %>
+        </div>
+      <% end %>
 
-      <%# if type == "notice" %>
-        <!-- <div class="bg-green-500">
+      <% if type == "notice" %>
+        <div class="bg-green-500">
           <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans">
-            <%# message %>
-          </div>3
-        </div> -->
-      <%# end %>
-    <%# end %>
+            <%= message %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
 
     <nav class="js-nav bg-white py-2 border-b border-gray-400" role="navigation" aria-label="
     main navigation">

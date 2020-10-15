@@ -42,3 +42,9 @@ yarn-debug.log*
 
 # Ignore application configuration
 /config/application.yml
+sendgrid.env
+sendgrid.env
+sendgrid.env
+sendgrid.env
+sendgrid.env
+sendgrid.env

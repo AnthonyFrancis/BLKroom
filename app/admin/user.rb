@@ -18,7 +18,6 @@ form do |f|
     f.input :id
     f.input :email
     f.input :username
-    f.input :email
     f.input :admin_rights
     f.input :password, :label => "Password (leave blank if you don't want to change it)"
     f.input :password_confirmation
