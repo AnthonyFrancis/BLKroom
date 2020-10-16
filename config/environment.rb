@@ -9,7 +9,7 @@ ActionMailer::Base.smtp_settings = {
   :password => 'your_sendgrid_api_key',
   :domain => 'blkroom-dev.herokuapp.com',
   :address => 'smtp.sendgrid.net',
-  :port => 3000,
+  :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true
 }
