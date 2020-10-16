@@ -14,21 +14,23 @@
       </div>
         <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input" %>
       </div>
-    </div>
+    
 
-    <div class="mb-6">
-      <%= f.label :password_confirmation, "Confirm new password", class: "label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "input" %>
-    </div>
-
-    <div class="mb-6">
-      <%= f.submit "Change my password", class: "btn btn-gray" %>
-    </div>
+      <div class="mb-6">
+        <%= f.label :password_confirmation, "Confirm new password", class: "label" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "input" %>
+      </div>
+      
+      <div class="mb-6">
+        <%= f.submit "Change my password", class: "btn btn-gray" %>
+      </div>
+    
   <% end %>
 
   <hr class="border mt-6" />
 
   <%= render "devise/shared/links" %>
+  </div>
 <% end %>
 
 <%= render "devise/shared/form_wrap" %>
