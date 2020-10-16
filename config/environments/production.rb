@@ -113,8 +113,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'blkroom-dev.herokuapp.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
+    :user_name => ENV['apikey'],
+    :password => ENV['your_sendgrid_api_key'],
     :domain => 'blkroom-dev.herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
