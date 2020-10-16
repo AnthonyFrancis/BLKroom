@@ -1,6 +1,6 @@
 class PostMailer < ApplicationMailer
 
-  default from: "notifications@blkroom.net"
+  default from: "anthony@anthonyfrancis.co"
 
   def new_response
     @comment = params[:comment]
