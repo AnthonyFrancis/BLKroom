@@ -6,8 +6,8 @@ Rails.application.initialize!
 
 if Rails.env.production?
   ActionMailer::Base.smtp_settings = {
-    :user_name => 'SENDGRID_USERNAME',
-    :password => 'SENDGRID_PASSWORD',
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
     :domain => 'blkroom-dev.herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
