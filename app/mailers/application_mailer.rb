@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'no-reply@blkroom.net'
+  default from: 'notification@blkroom.net'
   layout 'mailer'
 end
