@@ -10,6 +10,10 @@
   @apply bg-gray-700 text-white;
 }
 
+.btn-black {
+  @apply bg-black text-white;
+}
+
 .btn-gray:hover {
   @apply bg-gray-600;
 }
