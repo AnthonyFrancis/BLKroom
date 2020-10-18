@@ -66,3 +66,7 @@
 .link-purple:hover {
   @apply text-purple-800;
 }
+
+trix-toolbar .trix-button-group--file-tools {
+  display: none;
+}
