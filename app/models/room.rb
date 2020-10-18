@@ -2,6 +2,9 @@ class Room < ApplicationRecord
 	belongs_to :user
   	has_many :posts
 
+	has_rich_text :description
+	has_rich_text :sidebar
+
   	has_many :subscriptions
   	has_many :users, through: :subscriptions
 
