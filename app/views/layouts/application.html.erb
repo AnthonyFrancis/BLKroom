@@ -15,7 +15,24 @@
 
   <!-- Crisp Messenger -->
   
-  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ab17ea3e-caec-46f6-8c66-0db3b63d3d7d";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>  
+  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ab17ea3e-caec-46f6-8c66-0db3b63d3d7d";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script> 
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180814270-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    document.addEventListener("turbolinks:load", function(event) {
+      gtag('config', 'UA-180814270-1', {
+        page_location: event.data.url,
+        page_path: event.srcElement.location.pathname,
+        page_title: event.srcElement.title
+      });
+    })
+  </script>
+   
 
   </head>
 
