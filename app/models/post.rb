@@ -10,6 +10,8 @@ class Post < ApplicationRecord
 	belongs_to :user
 	belongs_to :room
 
+	has_rich_text :body
+
 	has_many :votes
 
 	validates :title, presence: true
