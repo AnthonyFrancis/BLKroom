@@ -1,4 +1,7 @@
+require 'action_text'
+
 class ApplicationController < ActionController::Base
+	helper ActionText::Engine.helpers
 	include Pagy::Backend
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	before_action :find_rooms
