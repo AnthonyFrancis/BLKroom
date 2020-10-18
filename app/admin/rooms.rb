@@ -19,6 +19,7 @@ permit_params :name, :title, :description, :sidebar, :user_id, :created_at
 
 form do |f|
   f.inputs "Room Details", :multipart => true do
+    f.input :user_id
     f.input :name
     f.input :title
     f.input :description
@@ -31,6 +32,7 @@ end
 
 index do
     selectable_column
+    column :user_id
     column :name
     column :title
     column :description
