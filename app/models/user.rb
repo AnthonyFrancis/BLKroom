@@ -7,17 +7,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   
+  has_many :comments, dependent: :destroy
 
-  has_many :votes
+  has_many :votes, dependent: :destroy
 
-  has_many :subscriptions
-  has_many :rooms, through: :subscriptions
+  has_many :subscriptions, dependent: :destroy
+  has_many :rooms, through: :subscriptions, dependent: :destroy
   has_many :posts, dependent: :destroy
 
   validates_uniqueness_of :username
   validates_presence_of :username
 
-  has_many :subscribed_posts, through: :rooms, source: :posts
+  has_many :subscribed_posts, through: :rooms, source: :posts, dependent: :destroy
 
   extend FriendlyId
   friendly_id :username, use: :slugged
