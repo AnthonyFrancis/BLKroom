@@ -1,9 +1,13 @@
 <div class="border-l-2 p-4 mb-4">
 
-
+	<% if comment.deleted? %>
+		<strong>[deleted]</strong> posted
+		<p>[deleted]</p> 
+	<% else %>
 		<%= render 'posts/posted_by', post: comment %>
 		<div class="text-black leading-normal text-sm"><%= simple_format comment.body %></div>
-		
+	<% end %>
+
 	<% if user_signed_in? %>
 		<div data-controller="reply">
 			<div class="text-gray-800 leading-normal text-sm font-semibold">
