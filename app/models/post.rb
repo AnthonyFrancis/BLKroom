@@ -14,6 +14,7 @@ class Post < ApplicationRecord
 
 	has_many :votes
 
+	validates :room, presence: true
 	validates :title, presence: true
 	validates :body, length: { maximum: 8000 }
 	validates :url, url: true, allow_blank: true

@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-    @pagy, @rooms = pagy(Room.all)
+    @rooms = Room.all
     @popular = Room.order(cached_votes_total: :desc)
   end
 
