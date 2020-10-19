@@ -17,6 +17,15 @@ class RoomsController < ApplicationController
   def show
     @rooms = Room.all
     @popular = Room.order(cached_votes_total: :desc)
+    @room_posts = @room.posts.paginate(page: params[:page], per_page: 10).order("created_at desc")
+
+
+    @grouped_posts = @room_posts.group_by { |t| t.created_at.to_date == DateTime.now.to_date }
+
+        if @grouped_posts[false].present?
+          #Create day wise groups of posts      
+          @post_wise_sorted_alerts = @grouped_posts[false].group_by { |t| t.created_at.wday}
+        end
   end
 
   # GET /rooms/new

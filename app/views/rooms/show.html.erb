@@ -6,20 +6,125 @@
   </div>
 </div>
 
-<% content_for :primary_content do %>
-  <% @room.posts.each do |room| %>
-    <%= render 'posts/post', post: room %>
-  <% end %>
-<% end %>
+<div class="flex flex-wrap px-2 lg:px-24 mt-2 lg:mt-8 container m-auto uppercase text-xs font-semibold">
+      Popular discussions
+  </div>
 
-<% content_for :secondary_content do %>
-    <%= render 'sidebar', room: @room %>
-<% end %>
+
+<div class="container lg:px-24 m-auto p-3 text-grey-darkest">
+       <div class="flex flex-wrap -mx-2 mb-8">
+
+        <% if @room_posts.exists? %>
+          <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+            <% if @grouped_posts.present? && @grouped_posts[true].present? %>
+
+
+            <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3">
+              <div class="w-full pr-0 mb-6">
+                <h5 class="text-xl font-bold float-left ml-2">Today</h5>
+                <div class="rounded-full float-right">
+                  <!--<ul id="nav-tab" class="list-none p-0 pt-2 profile-tabs">
+                    <li class="inline-block mr-2 active" data-tab="profile_submissions">
+                      <%= link_to "Popular", "#profile_posts", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                    </li>| 
+                    <li class="inline-block mr-2" data-tab="profile_comments">
+                      <%= link_to "Newest", "#profile_comments", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                    </li>
+                  </ul> -->
+                </div>
+              </div>
+            </div>
+
+              <div class="bg-white shadow rounded-sm">
+                <% @grouped_posts[true].each do |post| %>
+                  <%= render 'posts/post', post: post %>
+                <% end %>
+              </div>
+            <% end %>
+
+            <% if @post_wise_sorted_alerts.present? %>
+              <% @post_wise_sorted_alerts.each do |hash_elements|%>
+                <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
+                  <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+                    <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
+                  </div>
+                </div>
+                
+                    <div class="bg-white shadow rounded-sm">
+                      <% hash_elements.last.reverse_each do |post| %>
+                        <%= render 'posts/post', post: post %>
+                      <% end %>
+                    </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="w-full md:w-1/3">
+            <div class="bg-white shadow rounded-sm">
+              <div class="rounded">
+                  <div class="px-8 pt-6 pb-8">
+                    <div class="m-0 leading-tight flex items-center justify-between">
+                      <span class="text-xs no-underline inline-flex items-center text-gray-600">
+                        <%= render_svg 'icons/conversation', styles: "w-3 fill-current text-gray-500 mr-1" %> blk/<%= @room.name %>
+                      </span>
+                      <% if author_of(@room) %>
+                        <%= link_to edit_room_path(@room), class: "no-underline mr-2" do %>
+                          <%= render_svg 'icons/edit', styles: "w-4 fill-current text-gray-500", title: "Edit" %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <h3 class="m-0 leading-tight text-lg"><%= @room.title %></h3>
+
+
+                    <div id="subscribed_block" class="my-6">
+                        <%= render "subscriptions/subscription", room: @room %>
+                    </div>
+
+                    <div class="flex flex-wrap justify-start items-center pt-2">
+                      <div class="w-1/2 border-r border-gray-400">
+                        <p class="m-0"><%= @room.posts.count %></p>
+                        <p class="m-0 text-xs">
+                          <%= pluralize(@room.posts.count, 'Post') %>
+                        </p>
+                      </div>
+                      <div class="w-1/2 pl-4">
+                        <p id="subscribed_count"class="m-0"><%= @room.subscriptions.count %></p>
+                        <p class="m-0 text-xs">Subscribers</p>
+                      </div>
+                    </div>
+
+                    <hr class="border-b border-gray-400" />
+                    <br>
+                    <strong><h1>About Room</h1></strong>
+                    <hr class="border-b border-gray-400" />
+                    <div class="text-sm mb-6">
+                      <%= @room.description %>
+                    </div>
+
+                    <strong><h1>blk/<%= @room.name %> Rules</h1></strong>
+                    <hr class="border-b border-gray-400" />
+
+                    <div class="text-sm mb-6">
+                      <%= @room.sidebar %>
+                    </div>
+
+                    <div>
+                      <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-black my-2 block text-center"  %>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+       </div>
+  </div>
+
+
 
 <%= render 'basic_layout' %>
 
 <div class="flex flex-wrap lg:px-24 container m-auto text-center">
   <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6 inline">
-      <%#== pagy_nav(@pagy) %>
+      <%#== pagy_nav(@pagy) %> <%= will_paginate @room_posts %>
   </div>
 </div>
