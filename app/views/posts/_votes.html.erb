@@ -1,14 +1,14 @@
 <%  if user_signed_in? %>
 	<% if current_user.votes?(post) %>
-		<%= link_to post_vote_path(post), class: "bg-white-300 btn-white hover:bg-gray-400 text-gray-800 h-16 w-15 font-bold py-2 px-4 rounded inline-flex items-center", method: :delete, remote: true do %>
-			<div class="text-orange-600 text-center font-medium text-sm">
+		<%= link_to post_vote_path(post), class: "bg-white-300 btn-white hover:bg-gray-400 text-gray-800 h-20 w-16 font-bold py-2 px-4 rounded inline-flex items-center", method: :delete, remote: true do %>
+			<div class="text-orange-600 text-center font-medium text-sm upvote">
 				<%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current upvote" %>
 				<%= post.votes.count %>
 			</div>
 		<% end %>
 	<% else %>
-		<%= link_to post_vote_path(post), class: "bg-white-300 btn-white hover:bg-gray-400 text-gray-800 h-16 w-15 font-bold py-2 px-4 rounded inline-flex items-center", method: :post, remote: true do %>
-			<div class="text-center font-medium text-sm">
+		<%= link_to post_vote_path(post), class: "bg-white-300 btn-white hover:bg-gray-400 text-gray-800 h-20 w-16 font-bold py-2 px-4 rounded inline-flex items-center", method: :post, remote: true do %>
+			<div class="text-center font-medium text-sm upvote">
 				<%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current upvote" %>
 				<%= post.votes.count %>
 			</div>
@@ -16,7 +16,7 @@
 	<% end %>
 <% else %>
 	<%= link_to new_user_session_path, class: "bg-white-300 btn-white hover:bg-gray-400 text-gray-800 h-16 w-15 font-bold rounded inline-flex items-center justify-center", method: :post do %>
-		<div class="text-center font-medium text-sm">
+		<div class="text-center font-medium text-sm upvote">
 			<%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current upvote" %>
 			<%= post.votes.count %>
 		</div>
