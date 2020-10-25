@@ -23,8 +23,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  root to: "posts#index"
+  root to: "home#invite"
+  #root to: "posts#index"
   resources :users, only: [:show], as: "profile", :path => "u"
   get "about" => "home#about"
+  get "invite" => "home#invite"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

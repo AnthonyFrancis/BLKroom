@@ -14,9 +14,11 @@
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,500,600,700' %>
 
   <!-- Crisp Messenger -->
-  
+  <% unless action_name == "invite" %>
   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ab17ea3e-caec-46f6-8c66-0db3b63d3d7d";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script> 
 
+  <% end %>
+  
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180814270-1"></script>
   <script>
@@ -55,6 +57,8 @@
         </div>
       <% end %>
     <% end %>
+
+<% unless action_name == "invite" %>
 
     <nav class="js-nav bg-white py-2 border-b border-gray-400" role="navigation" aria-label="
     main navigation">
@@ -147,6 +151,9 @@
       </div>
       </div>
     </nav>
+
+  <% end %>
+
     <%= content_for?(:content) ? yield(:content) : yield %>
     <div class="js-notice dynamic-notice fadeInUp animated"></div>
   </body>
