@@ -79,6 +79,29 @@
                   <p class="text-gray-600 text-sm">Your personal BLKroom frontpage. Come here to check in with your favorite rooms.</p>
                   <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-white my-2 block text-center"  %>
                   <%= link_to 'Join a Room', rooms_path, class: "btn btn-small btn-black my-2 block text-center"  %>
+                  <br>
+                  <h3>Invite your friends to BLKroom</h3>
+                  <p class="text-gray-600 text-sm">Your personal BLKroom frontpage. Come here to check in with your favorite rooms.</p>
+
+
+
+                  <%#= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
+                    <%#= render "users/shared/error_messages", resource: resource %>
+
+                    <%# resource.class.invite_key_fields.each do |field| -%>
+                      <div class="field">
+                        <%#= f.label field %><br />
+                        <%#= f.text_field field %>
+                      </div>
+                    <%# end -%>
+
+                    <div class="actions">
+                      <%#= f.submit t("devise.invitations.new.submit_button") %>
+                    </div>
+                  <%# end %>
+
+
+
                 <% end %>
               </div>
             </div>
