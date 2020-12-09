@@ -43,6 +43,7 @@ gem 'sidekiq', '~> 6.1', '>= 6.1.2'
 gem 'will_paginate', '~> 3.1.0'
 gem 'meta-tags', '~> 2.13'
 gem 'sendgrid-ruby'
+gem 'devise_invitable'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
