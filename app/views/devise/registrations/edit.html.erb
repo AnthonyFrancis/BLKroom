@@ -1,6 +1,13 @@
 <% content_for :devise_form do %>
   <h2 class="heading text-4xl font-bold pt-4 mb-8">Edit <%= resource_name.to_s.humanize %></h2>
 
+  <%= form_for @invite , :url => invites_path do |f| %>
+    <%= f.hidden_field :user_id, :value => @invite.user_id %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.submit 'Send' %>
+  <% end %>
+
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 

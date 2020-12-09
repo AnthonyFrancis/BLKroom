@@ -33,6 +33,8 @@ class PostsController < ApplicationController
 
     today = Date.today # Today's date
     @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
+
+
   end
 
   # GET /posts/1

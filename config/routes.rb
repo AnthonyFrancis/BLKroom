@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get "posts/unsubscribe/:unsubscribe_hash" => "posts#unsubscribe", :as => 
   "comment_unsubscribe"
+
+  resources :invites
   
   resources :posts do
     resource :vote, module: :posts

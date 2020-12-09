@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   has_many :subscribed_posts, through: :rooms, source: :posts, dependent: :destroy
 
+  has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
+  has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
+  has_many :invites
+
   extend FriendlyId
   friendly_id :username, use: :slugged
 
