@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  root to: "home#invite"
-  #root to: "posts#index"
+  #root to: "home#invite"
+  root to: "posts#index"
   resources :users, only: [:show], as: "profile", :path => "u"
   get "about" => "home#about"
   #get "secretkey=xyz" => "posts#index"
