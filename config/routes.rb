@@ -22,6 +22,12 @@ Rails.application.routes.draw do
     end
   end
 
+  as :user do
+    get 'signin' => 'devise/sessions#new'
+    post 'signin' => 'devise/sessions#create'
+    delete 'signout' => 'devise/sessions#destroy'
+  end
+
   devise_for :users
   #root to: "home#invite"
   root to: "posts#index"
