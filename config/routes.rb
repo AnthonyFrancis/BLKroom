@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   end
 
  
-  root to: "home#invite"
-  #root to: "posts#index"
+  #root to: "home#invite"
+  root to: "posts#index"
 
 
   resources :users, only: [:show], as: "profile", :path => "u"
