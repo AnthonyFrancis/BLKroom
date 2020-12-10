@@ -1,6 +1,6 @@
 <% content_for :devise_form do %>
 
-  <h2 class="heading text-2xl font-bold pt-4 mb-8"><%= t "devise.invitations.new.header" %></h2>
+  <h2 class="heading text-2xl font-bold pt-4 mb-8">Send Invitation<%#= t "devise.invitations.new.header" %></h2>
 
   <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
