@@ -22,13 +22,15 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_for :users #, skip: [:registrations]
+
   as :user do
     get 'signin' => 'devise/sessions#new'
     post 'signin' => 'devise/sessions#create'
     delete 'signout' => 'devise/sessions#destroy'
   end
 
-  devise_for :users
+ 
   #root to: "home#invite"
   root to: "posts#index"
   resources :users, only: [:show], as: "profile", :path => "u"
