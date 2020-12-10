@@ -1,16 +1,20 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
+<% content_for :devise_form do %>
 
-<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2 class="heading text-2xl font-bold pt-4 mb-8"><%= t "devise.invitations.new.header" %></h2>
 
-  <% resource.class.invite_key_fields.each do |field| -%>
-    <div class="field">
-      <%= f.label field %><br />
-      <%= f.text_field field %>
+  <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <% resource.class.invite_key_fields.each do |field| -%>
+      <div class="mb-6">
+        <%= f.label field, class: "label" %><br />
+        <%= f.text_field field, class: "input" %>
+      </div>
+    <% end -%>
+
+    <div class="mb-6">
+      <%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-black" %>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit t("devise.invitations.new.submit_button") %>
-  </div>
+  <% end %>
 <% end %>
+<%= render "devise/shared/form_wrap" %>
