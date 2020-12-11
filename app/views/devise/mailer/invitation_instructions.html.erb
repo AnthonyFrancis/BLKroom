@@ -199,9 +199,17 @@ a[x-apple-data-detectors='true'] {
         
 <div class="v-text-align" align="center">
   <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Open Sans',sans-serif;"><tr><td class="v-text-align" style="font-family:'Open Sans',sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:42px; v-text-anchor:middle; width:200px;" arcsize="14.5%" stroke="f" fillcolor="#ffffff"><w:anchorlock/><center style="color:#000000;font-family:'Open Sans',sans-serif;"><![endif]-->
-    <a href="" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:'Open Sans',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #000000; background-color: #ffffff; border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
+  
+
+
+    <a href="<%= accept_invitation_url(@resource, invitation_token: @token) %>" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:'Open Sans',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #000000; background-color: #ffffff; border-radius: 6px; -webkit-border-radius: 6px; -moz-border-radius: 6px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
       <span class="v-padding" style="display:block;padding:13px 40px;line-height:120%;"><strong>Accept Invitation</strong></span>
     </a>
+
+    <% if @resource.invitation_due_at %>
+      <p><%= t("devise.mailer.invitation_instructions.accept_until", due_date: l(@resource.invitation_due_at, format: :'devise.mailer.invitation_instructions.accept_until_format')) %></p>
+    <% end %>
+
   <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
 </div>
 
@@ -238,7 +246,7 @@ a[x-apple-data-detectors='true'] {
         
   <div class="v-text-align" style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%; text-align: center;">&nbsp;</p>
-<p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="font-size: 18px; line-height: 25.2px;">Anthony Francis has invited you to BLKroom.</span></p>
+<p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="font-size: 18px; line-height: 25.2px;"> has invited you to BLKroom.</span></p>
 <p style="font-size: 14px; line-height: 140%; text-align: center;">&nbsp;</p>
 <p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="font-size: 18px; line-height: 25.2px;">Join the United Kingdom's growing Black British discussion forum.</span></p>
   </div>
@@ -444,6 +452,10 @@ a[x-apple-data-detectors='true'] {
   </tbody>
   </table>
   <!--[if (mso)|(IE)]></div><![endif]-->
+
+<p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
+<p><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %></p>
+
 </body>
 
 </html>

@@ -17,8 +17,8 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :username
   validates_presence_of :username
-  validates_presence_of :firstname
-  validates_presence_of :lastname
+  validates_presence_of :first_name
+  validates_presence_of :last_name
 
   has_many :subscribed_posts, through: :rooms, source: :posts, dependent: :destroy
 
