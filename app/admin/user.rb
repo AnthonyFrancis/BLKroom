@@ -18,6 +18,8 @@ form do |f|
     f.input :id
     f.input :email
     f.input :username
+    f.input :firstname
+    f.input :lastname
     f.input :admin_rights
     f.input :password, :label => "Password (leave blank if you don't want to change it)"
     f.input :password_confirmation
@@ -30,6 +32,8 @@ index do
     selectable_column
     column :id
     column :username
+    column :firstname
+    column :lastname
     column :email
     column :admin_rights
     column :current_sign_in_at
@@ -39,7 +43,7 @@ index do
     actions
   end
 
-permit_params :name, :id, :email, :investor, :username, :password, :password_confirmation, :admin_rights
+permit_params :name, :id, :email, :investor, :username, :password, :password_confirmation, :admin_rights, :firstname, :lastname
 
 controller do 
 
