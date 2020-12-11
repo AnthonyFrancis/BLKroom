@@ -80,7 +80,8 @@
                   <%= link_to 'Create Post', new_post_path, class: "btn btn-small btn-white my-2 block text-center"  %>
                   <%= link_to 'Join a Room', rooms_path, class: "btn btn-small btn-black my-2 block text-center"  %>
                   <br>
-                  <h3>Invite your friends to BLKroom</h3>
+                  <h3>Invite a friend to BLKroom!</h3>
+                  <p>You have <b><%= @current_user.invitation_limit %></b> invites left.</p>
                   <%= render 'devise/invitations/form', invitation: @invitation %>
 
                 <% end %>
