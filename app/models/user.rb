@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :rooms, through: :subscriptions, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :invitations, class_name: self.to_s, as: :invited_by
 
   validates_uniqueness_of :username
   validates_presence_of :username

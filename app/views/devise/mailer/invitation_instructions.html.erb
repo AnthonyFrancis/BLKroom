@@ -246,7 +246,9 @@ a[x-apple-data-detectors='true'] {
         
   <div class="v-text-align" style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%; text-align: center;">&nbsp;</p>
-<p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="font-size: 18px; line-height: 25.2px;"> has invited you to BLKroom.</span></p>
+<p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="font-size: 18px; line-height: 25.2px;">
+
+<%= @resource.invited_by.first_name %> <%= @resource.invited_by.last_name %> has invited you to BLKroom.</span></p>
 <p style="font-size: 14px; line-height: 140%; text-align: center;">&nbsp;</p>
 <p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="font-size: 18px; line-height: 25.2px;">Join the United Kingdom's growing Black British discussion forum.</span></p>
   </div>
@@ -352,53 +354,68 @@ a[x-apple-data-detectors='true'] {
   <tbody>
     <tr>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px 10px;font-family:'Open Sans',sans-serif;" align="left">
-        
+
 <div align="center">
   <div style="display: table; max-width:227px;">
   <!--[if (mso)|(IE)]><table width="227" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse;" align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:227px;"><tr><![endif]-->
   
     
     <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 25px;" valign="top"><![endif]-->
+<!--
     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 25px">
       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
         <a href="https://facebook.com/" title="Facebook" target="_blank">
-          <img src="images/image-1.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+          <img src="/assets/facebook.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
         </a>
       </td></tr>
     </tbody></table>
+-->
     <!--[if (mso)|(IE)]></td><![endif]-->
     
     <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 25px;" valign="top"><![endif]-->
+<!--
     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 25px">
       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
         <a href="https://linkedin.com/" title="LinkedIn" target="_blank">
-          <img src="images/image-3.png" alt="LinkedIn" title="LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+          <img src="/assets/linkedin.png" alt="LinkedIn" title="LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
         </a>
       </td></tr>
     </tbody></table>
+
+-->
     <!--[if (mso)|(IE)]></td><![endif]-->
     
     <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 25px;" valign="top"><![endif]-->
+
+<!--
     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 25px">
       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
         <a href="https://twitter.com/" title="Twitter" target="_blank">
-          <img src="images/image-4.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+          <img src="/assets/twitter.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
         </a>
       </td></tr>
     </tbody></table>
+
+-->
     <!--[if (mso)|(IE)]></td><![endif]-->
     
     <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 0px;" valign="top"><![endif]-->
+
+  <!--    
     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0px">
       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
         <a href="https://instagram.com/" title="Instagram" target="_blank">
-          <img src="images/image-2.png" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+          <img src="/assets/instagram.png" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
         </a>
       </td></tr>
     </tbody></table>
+
+-->
+
     <!--[if (mso)|(IE)]></td><![endif]-->
     
     
+
     <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
   </div>
 </div>
@@ -427,9 +444,9 @@ a[x-apple-data-detectors='true'] {
     <tr>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 20px;font-family:'Open Sans',sans-serif;" align="left">
         
-  <div class="v-text-align" style="color: #95a5a6; line-height: 140%; text-align: center; word-wrap: break-word;">
+  <!-- <div class="v-text-align" style="color: #95a5a6; line-height: 140%; text-align: center; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 12px; line-height: 16.8px;"><span style="text-decoration: underline; line-height: 16.8px; font-size: 12px;">Privacy</span> | <span style="text-decoration: underline; line-height: 16.8px; font-size: 12px;">Unsubscribe</span></span></p>
-  </div>
+  </div>-->
 
       </td>
     </tr>
@@ -452,9 +469,6 @@ a[x-apple-data-detectors='true'] {
   </tbody>
   </table>
   <!--[if (mso)|(IE)]></div><![endif]-->
-
-<p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
-<p><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %></p>
 
 </body>
 
