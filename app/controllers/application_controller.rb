@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
 		added_attrs = [:username, :comment_subscription] # this can grow to however many fields you need
 	    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
 	    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
-	    devise_parameter_sanitizer.permit :accept_invitation, keys: [:email, :username]
+	    devise_parameter_sanitizer.permit :accept_invitation, keys: [:email, :username, :firstname, :lastname]
 	end
 end
