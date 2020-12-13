@@ -31,8 +31,13 @@ Rails.application.routes.draw do
   end
 
  
-  #root to: "home#invite"
-  root to: "posts#index"
+  root to: "home#invite"
+  #root to: "posts#index"
+
+
+  constraints subdomain: "beta" do
+   get "invite" => "home#invite"
+  end
 
 
   resources :users, only: [:show], as: "profile", :path => "u"
