@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index, :newest]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   respond_to :js, :html, :json
@@ -7,6 +7,35 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    if user_signed_in?
+        @posts = current_user.subscribed_posts.paginate(page: params[:page], per_page: 10).order("created_at desc")
+        @popular = current_user.subscribed_posts.order(votes_count: :desc)
+        @random = Post.order("RANDOM()")
+
+        #Retrives all post and divides into two groups todays messages and other messages
+        @grouped_posts = @posts.group_by { |t| t.created_at.to_date == DateTime.now.to_date }
+
+        if @grouped_posts[false].present?
+          #Create day wise groups of posts      
+          @post_wise_sorted_alerts = @grouped_posts[false].group_by { |t| t.created_at.wday}
+        end
+    else
+        @posts = Post.paginate(page: params[:page], per_page: 10).order("created_at desc")
+
+        #Retrives all post and divides into two groups todays messages and other messages
+        @grouped_posts = @posts.group_by { |t| t.created_at.to_date == DateTime.now.to_date }
+
+        if @grouped_posts[false].present?
+          #Create day wise groups of posts      
+          @post_wise_sorted_alerts = @grouped_posts[false].group_by { |t| t.created_at.wday}
+        end  
+    end
+
+    today = Date.today # Today's date
+    @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
+  end
+
+  def newest
     if user_signed_in?
         @posts = current_user.subscribed_posts.paginate(page: params[:page], per_page: 10).order("created_at desc")
         @popular = current_user.subscribed_posts.order(votes_count: :desc)

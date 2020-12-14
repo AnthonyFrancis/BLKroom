@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   end
 
  
-  root to: "home#invite"
-  #root to: "posts#index"
+  #root to: "home#invite"
+  root to: "posts#index"
 
 
   constraints subdomain: "beta" do
@@ -44,5 +44,6 @@ Rails.application.routes.draw do
   get "about" => "home#about"
   get "live" => "posts#index"
   get "invite" => "home#invite"
+  get "newest" => "posts#newest"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
