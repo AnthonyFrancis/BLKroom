@@ -61,8 +61,15 @@ controller do
   end
 
   def destroy
-  @user = User.find_by_username params[:id]
-  super
+    @user = User.find_by_username params[:id]
+
+    if @user.present?
+      @user = User.find_by_username params[:id]
+      super
+    else
+      @user = User.find params[:id]
+      super
+    end
   end
 
   def update
