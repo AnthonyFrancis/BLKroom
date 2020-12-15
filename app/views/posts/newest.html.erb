@@ -21,38 +21,21 @@
                 </li>
               </ul>
             </div>
-            <% if @grouped_posts.present? && @grouped_posts[true].present? %>
+            <% @grouped_posts.each do |day, posts| %>
 
-
-            <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3">
-              <div class="w-full pr-0 mb-6">
-                <h5 class="text-xl font-bold float-left ml-2">Today</h5>
-                
+              <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
+                <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+                  <h5 class="text-xl font-bold float-left"><%= day == Date.today ? "Today" : day.strftime('%B %d') %> </h5>
+                </div>
               </div>
-            </div>
-
+              
               <div class="bg-white shadow rounded-sm">
-                <% @grouped_posts[true].each do |post| %>
-                  <%= render 'posts/post', post: post %>
+                <% posts.each do |post| %>
+                    <%= render 'posts/post', post: post %>                      
                 <% end %>
               </div>
-            <% end %>
 
-            <% if @post_wise_sorted_alerts.present? %>
-              <% @post_wise_sorted_alerts.each do |hash_elements|%>
-                <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
-                  <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-                    <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
-                  </div>
-                </div>
-                
-                    <div class="bg-white shadow rounded-sm">
-                      <% hash_elements.last.reverse_each do |post| %>
-                        <%= render 'posts/post', post: post %>
-                      <% end %>
-                    </div>
               <% end %>
-            <% end %>
           </div>
         <% else %>
           <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
