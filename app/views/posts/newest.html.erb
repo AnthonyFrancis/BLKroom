@@ -119,7 +119,15 @@
 
                 <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
                   <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-                    <h5 class="text-xl font-bold float-left"><%= day == Date.today ? "Today" : day.strftime("%B #{day.day.ordinalize}")%> </h5>
+                    <h5 class="text-xl font-bold float-left">
+                      <% if day == Date.today  %>
+                        Today
+                      <% elsif day == Date.yesterday %>
+                        Yesterday
+                      <%else%>
+                        <%= day.strftime("%B #{day.day.ordinalize}") %>
+                      <% end %>
+                      </h5>
                   </div>
                 </div>
                 
