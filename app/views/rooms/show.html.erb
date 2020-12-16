@@ -10,21 +10,20 @@
       Popular discussions
   </div>
 
-
 <div class="container lg:px-24 m-auto p-3 text-grey-darkest">
        <div class="flex flex-wrap -mx-2 mb-8">
 
         <% if @room_posts.exists? %>
           <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
           <div class="rounded-full float-right">
-              <!-- <ul class="list-none p-0 pt-2 profile-tabs">
+              <ul class="list-none p-0 pt-2 profile-tabs">
                 <li class="inline-block mr-2" data-tab="profile_submissions">
-                  <%= link_to "Popular", root_path, class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                  <%= link_to "Popular", room_path, class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
                 </li>| 
-                <li class="inline-block mr-2">
-                  <%= link_to "Newest", newest_path, class: "font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+               <li class="inline-block mr-2">
+                  <%= link_to "Newest", room_path(:order => "newest"), class: "font-medium text-black hover:text-gray-900 py-3 text-sm" %>
                 </li>
-              </ul> -->
+              </ul>
             </div>
             <% if @grouped_posts.present? %>
               

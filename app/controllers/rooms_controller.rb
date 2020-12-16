@@ -17,14 +17,17 @@ class RoomsController < ApplicationController
   def show
     @rooms = Room.all
     @room_posts = @room.posts.paginate(page: params[:page], per_page: 10).order("created_at desc")
-
-
     @grouped_posts = @room_posts.group_by { |t| t.created_at.to_date }
+    @order = params[:order]
 
-        if @grouped_posts[false].present?
-          #Create day wise groups of posts      
-          @post_wise_sorted_alerts = @grouped_posts[false].group_by { |t| t.created_at.wday}
-        end
+    @grouped_posts.each do |day, posts|
+
+      if params[:order] == "newest"
+      
+      else
+        @grouped_posts[day] = posts.sort {|a, b| b.votes_count <=> a.votes_count }
+      end
+    end
   end
 
   # GET /rooms/new
