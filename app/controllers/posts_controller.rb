@@ -31,6 +31,19 @@ class PostsController < ApplicationController
         end  
     end
 
+    @grouped_posts.each do |day, posts|
+      @grouped_posts[day] = posts.sort {|a, b| b.votes_count <=> a.votes_count }
+    end
+
+    #my_temp_data  = @grouped_posts
+    #@grouped_posts.each do |day, posts|
+    #  if day == Date.today
+    #    delete my_temp_data[day]
+    #    my_temp_data["Today"] = posts
+    #  end
+    #end
+    #@grouped_posts = my_temp_data
+
     today = Date.today # Today's date
     @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
   end
