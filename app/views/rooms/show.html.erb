@@ -16,37 +16,51 @@
 
         <% if @room_posts.exists? %>
           <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-            <% if @grouped_posts.present? && @grouped_posts[true].present? %>
-
-
-            <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3">
-              <div class="w-full pr-0 mb-6">
-                <h5 class="text-xl font-bold float-left ml-2">Today</h5>
-                <div class="rounded-full float-right">
-                  <!--<ul id="nav-tab" class="list-none p-0 pt-2 profile-tabs">
-                    <li class="inline-block mr-2 active" data-tab="profile_submissions">
-                      <%= link_to "Popular", "#profile_posts", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
-                    </li>| 
-                    <li class="inline-block mr-2" data-tab="profile_comments">
-                      <%= link_to "Newest", "#profile_comments", class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
-                    </li>
-                  </ul> -->
-                </div>
-              </div>
+          <div class="rounded-full float-right">
+              <!-- <ul class="list-none p-0 pt-2 profile-tabs">
+                <li class="inline-block mr-2" data-tab="profile_submissions">
+                  <%= link_to "Popular", root_path, class: "link font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                </li>| 
+                <li class="inline-block mr-2">
+                  <%= link_to "Newest", newest_path, class: "font-medium text-black hover:text-gray-900 py-3 text-sm" %>
+                </li>
+              </ul> -->
             </div>
+            <% if @grouped_posts.present? %>
+              
+                <% @grouped_posts.each do |day, posts| %>
 
-              <div class="bg-white shadow rounded-sm">
-                <% @grouped_posts[true].each do |post| %>
-                  <%= render 'posts/post', post: post %>
+                <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
+                  <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
+                    <h5 class="text-xl font-bold float-left">
+                      <% if day == Date.today  %>
+                        Today
+                      <% elsif day == Date.yesterday %>
+                        Yesterday
+                      <%else%>
+                        <%= day.strftime("%B #{day.day.ordinalize}") %>
+                      <% end %>      
+                      </h5>
+                  </div>
+                </div>
+                
+                <div class="bg-white shadow rounded-sm">
+                  <% posts.each do |post| %>
+                      <%= render 'posts/post', post: post %>                      
+                  <% end %>
+                </div>
+
                 <% end %>
-              </div>
+            
             <% end %>
+
 
             <% if @post_wise_sorted_alerts.present? %>
               <% @post_wise_sorted_alerts.each do |hash_elements|%>
                 <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
                   <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-                    <h5 class="text-xl font-bold float-left"><%= Date::DAYNAMES[hash_elements.first] %> </h5>
+                    <h5 class="text-xl font-bold float-left">
+                    </h5>
                   </div>
                 </div>
                 
