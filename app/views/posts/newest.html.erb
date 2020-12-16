@@ -25,7 +25,7 @@
 
               <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
                 <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-                  <h5 class="text-xl font-bold float-left"><%= day == Date.today ? "Today" : day.strftime('%B %d') %> </h5>
+                  <h5 class="text-xl font-bold float-left"><%= day == Date.today ? "Today" : day.strftime("%B #{day.day.ordinalize}") %> </h5>
                 </div>
               </div>
               
@@ -111,7 +111,7 @@
 
                 <div class="rounded-tl-lg rounded-tr-lg container m-auto clearfix mb-3 ml-2">
                   <div class="w-full md:w-2/3 pr-0 md:pr-6 mb-6">
-                    <h5 class="text-xl font-bold float-left"><%= day == Date.today ? "Today" : day.strftime('%B %d') %> </h5>
+                    <h5 class="text-xl font-bold float-left"><%= day == Date.today ? "Today" : day.strftime("%B #{day.day.ordinalize}")%> </h5>
                   </div>
                 </div>
                 

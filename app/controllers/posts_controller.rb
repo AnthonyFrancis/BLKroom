@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def index
     if user_signed_in?
         @posts = current_user.subscribed_posts.paginate(page: params[:page], per_page: 10).order("created_at desc")
-        @popular = current_user.subscribed_posts.order(votes_count: :desc)
+        @popular = current_user.subscribed_posts.paginate(page: params[:page], per_page: 10).order(votes_count: :desc)
         @random = Post.order("RANDOM()")
 
         #Retrives all post and divides into two groups todays messages and other messages
