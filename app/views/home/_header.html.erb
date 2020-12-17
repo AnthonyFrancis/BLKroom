@@ -1,14 +1,33 @@
 <header class="bg-white shadow">
-  <div class="container mx-auto py-20 px-24"> 
-    <h1 class="text-3xl font-bold leading-tight text-gray-900">
-      Discussion Forum for Black British Culture and More
-    </h1>
-    <p class="mb-4">Share and explore black content, topics, breaking stories and viral videos on the internet!</p>
+  <div class="container mx-auto py-20 px-24">
+          <div class="flex flex-wrap -mx-8">
+            <div class="w-full lg:w-3/5 px-8">
+              <div class="mb-12 lg:mb-0 pb-12 lg:pb-0 border-b lg:border-b-0">
+                <h2 class="text-3xl font-extrabold font-heading">Discussion Forum for Black British Culture</h2>
+                <p class="mb-4 leading-loose text-blueGray-400">Share and explore black content, topics, breaking stories and viral videos on the internet!</p>
+                <%= link_to "Get your login", new_user_registration_path, class: "inline-flex items-center justify-center px-5 py-3 border border-transparent text-bold btn-black btn-large text-base font-medium rounded-md text-white" %>
+              </div>
+            </div>
+            <div class="w-full lg:w-2/5 px-8">
+              <ul class="space-y-12">
+                <li class="flex -mx-4">
+                  <div class="px-4">
+                    <h3 class="my-4 text-xl font-semibold">BLKroom Stats</h3>
+                    <p class="text-blueGray-400 leading-loose">Members: <%= @user.count %></p>
+                    <p class="text-blueGray-400 leading-loose">Discussions: <%= @posts.count %></p>
+                    <p class="text-blueGray-400 leading-loose">Latest Member: <%= @latest.last.username %></p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+</header>  
+
+   
 
 <!--
     <a class="typeform-share button" href="https://form.typeform.com/to/ufm48DLU?typeform-medium=embed-snippet" data-mode="popup" style="display:inline-block;text-decoration:none;background-color:#000000;color:white;cursor:pointer;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:42.5px;text-align:center;margin:0;height:42.5px;padding:0px 28px;border-radius:4px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;" data-size="70" data-hide-headers="true" data-hide-footer="true" target="_blank">Get your login </a> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script> -->
+    
+   
 
-
-    <%= link_to "Get your login", new_user_registration_path, class: "btn btn-black btn-large mr-2" %>
-  </div>
-</header>

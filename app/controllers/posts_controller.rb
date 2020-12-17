@@ -7,6 +7,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @user = User.all
+    @latest = User.where.not(username: [nil, ""])
+    
     if user_signed_in?
         @posts = current_user.subscribed_posts.paginate(page: params[:page], per_page: 10).order("created_at desc")
         @random = Post.order("RANDOM()")
@@ -48,6 +51,8 @@ class PostsController < ApplicationController
   end
 
   def newest
+    @user = User.all
+    @latest = User.where.not(username: [nil, ""])
     if user_signed_in?
         @posts = current_user.subscribed_posts.paginate(page: params[:page], per_page: 10).order("created_at desc")
         @popular = current_user.subscribed_posts.order(votes_count: :desc)
