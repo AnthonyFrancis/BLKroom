@@ -48,25 +48,35 @@ permit_params :name, :id, :email, :investor, :username, :password, :password_con
 controller do 
 
   def edit
-  @user = User.find_by_username params[:id]
+    begin
+      @user = User.find_by_username params[:id]
+      super
+    rescue
+      @user = User.find params[:id]
+      super
+    end
   end
 
   def update
-  @user = User.find_by_username(permitted_params[:id])
-  super
+      @user = User.find_by_username params[:id]
+      super
   end
 
   def show
-  @user = User.find_by_username params[:id]
+    begin
+      @user = User.find_by_username params[:id]
+      super
+    rescue
+      @user = User.find params[:id]
+      super
+    end
   end
 
   def destroy
-    @user = User.find_by_username params[:id]
-
-    if @user.present?
+    begin
       @user = User.find_by_username params[:id]
       super
-    else
+    rescue
       @user = User.find params[:id]
       super
     end

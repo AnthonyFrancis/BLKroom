@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users #, skip: [:registrations]
+  devise_for :users, controllers: { registrations: "registrations" }
 
   as :user do
     get 'signin' => 'devise/sessions#new'
