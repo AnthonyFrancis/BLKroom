@@ -40,9 +40,9 @@ end
   end
 
   def after_inactive_sign_up_path_for(resource)
-      puts "<<<<<<<<<<<<<<<< SIGN IN INACTIVE"
-      welcome_path(:intro)
-     end
+    puts "<<<<<<<<<<<<<<<< SIGN IN INACTIVE"
+    welcome_path(:intro)
+  end
 
   def update_resource(resource, params)
     # Require current password if user is trying to change password.
