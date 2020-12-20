@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     delete 'signout' => 'devise/sessions#destroy'
   end
 
+  resources :welcome
+
  
   #root to: "home#invite"
   root to: "posts#index"

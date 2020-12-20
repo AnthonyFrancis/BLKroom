@@ -40,4 +40,9 @@ class User < ApplicationRecord
     self.unsubscribe_hash = SecureRandom.hex
   end
 
+  #protected
+  #  def confirmation_required?
+  #    false
+  #  end
+
 end

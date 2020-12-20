@@ -1,5 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
 
+def create
+  super
+end
+
+
 def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
@@ -22,6 +27,23 @@ end
 
   protected
 
+  def after_sign_in_path_for(resource)
+    puts "<<<<<<<<<<<<<<<< SIGN IN"
+    welcome_path(:intro)
+  end
+
+  def after_sign_up_path_for(resource)
+    sign_in(resource)
+    puts "<<<<<<<<<<<<<<<< SIGN UP ACTIVE"
+    welcome_path(:intro)
+    super
+  end
+
+  def after_inactive_sign_up_path_for(resource)
+      puts "<<<<<<<<<<<<<<<< SIGN IN INACTIVE"
+      welcome_path(:intro)
+     end
+
   def update_resource(resource, params)
     # Require current password if user is trying to change password.
     return super if params["password"]&.present?
@@ -30,18 +52,6 @@ end
     resource.update_without_password(params.except("current_password"))
   end
 
+  
 
-  def after_sign_up_path_for(resource)
-     puts "<<<<<<<<<<<<<<<< SIGN UP ACTIVE"
-     if session[:redirect_to_register]
-      resource.redirect = true
-      resource.redirect_reason = "attend_event"
-      resource.redirect_to = session[:redirect_to_pin_id]
-      resource.welcome_step = 3
-      resource.save
-      register_path(session[:redirect_to_pin_id])
-    else
-      welcome_path
-    end
-   end
 end
