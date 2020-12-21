@@ -27,22 +27,22 @@ end
 
   protected
 
-  def after_sign_in_path_for(resource)
-    puts "<<<<<<<<<<<<<<<< SIGN IN"
-    welcome_path(:intro)
-  end
+  #def after_sign_in_path_for(resource)
+  #  puts "<<<<<<<<<<<<<<<< SIGN IN"
+  #  welcome_path(:intro)
+  #end
 
-  def after_sign_up_path_for(resource)
-    sign_in(resource)
-    puts "<<<<<<<<<<<<<<<< SIGN UP ACTIVE"
-    welcome_path(:intro)
-    super
-  end
+  #def after_sign_up_path_for(resource)
+  #  sign_in(resource)
+  #  puts "<<<<<<<<<<<<<<<< SIGN UP ACTIVE"
+  #  welcome_path(:intro)
+  #  super
+  #end
 
-  def after_inactive_sign_up_path_for(resource)
-    puts "<<<<<<<<<<<<<<<< SIGN IN INACTIVE"
-    welcome_path(:intro)
-  end
+  #def after_inactive_sign_up_path_for(resource)
+  #  puts "<<<<<<<<<<<<<<<< SIGN IN INACTIVE"
+  #  welcome_path(:intro)
+  #end
 
   def update_resource(resource, params)
     # Require current password if user is trying to change password.
