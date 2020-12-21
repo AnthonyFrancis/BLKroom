@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
 	    @rooms = Room.all
 	    case step
 	    when :post
-	      #@user = @user.username
+	      @post = current_user.posts.build
 	    end
 	    render_wizard
   	end

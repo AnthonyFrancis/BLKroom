@@ -1,0 +1,88 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation" class="border-red-400 p-4 rounded border bg-red-100 mb-6">
+      <h2 class="text-sm heading text-red-500"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul class="text-sm mt-2 text-red-500 pl-4">
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+
+  <% end %>
+
+  <div class="mb-6 w-full lg:w-2/5">
+    <div class="relative">
+      <%= form.select(:room_id, Room.all.collect {|u| [u.name, u.id]}, { prompt: "Choose a room"}, { class: "select"}) %>
+      
+
+      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+        <svg class="fill-current h-4 w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      </div>
+    </div>
+  </div>
+
+  <hr class="border border-gray-400 my-4"/>
+
+  <div class="pb-10">
+    <nav class="border-box">
+      <ul id="nav-tab" class="tabs list-none flex flex-wrap justify-between">
+        <li class="active w-1/3 text-center cursor-pointer" data-tab="text">
+          <%= link_to "#text", class: "tab tab-first" do %>
+            <%= render_svg "icons/text" %> Text
+          <% end %>
+        </li>
+
+        <li class="w-1/3 text-center cursor-pointer" data-tab="image_video">
+          <%= link_to "#image_video", class: "tab" do %>
+            <%= render_svg "icons/image" %> Image/Video
+          <% end %>
+        </li>
+
+         <li class="w-1/3 text-center cursor-pointer" data-tab="url">
+          <%= link_to "#link", class: "tab tab-last" do %>
+            <%= render_svg "icons/link" %> Link
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="mb-6">
+    <%= form.label :title, class:"label" %>
+    <%= form.text_field :title, class:"input"  %>
+  </div>
+
+  <div class="mb-6 text">
+    <%= form.label "Text", class: "label" %>
+    <%= form.rich_text_area :body, class: "input"  %>
+  </div>
+
+  <div class="mb-6 url">
+    <%= form.label :url, class: "label" %>
+    <%= form.text_field :url, class: "input" %>
+  </div>
+
+  <div class="image_video">
+    <div class="mb-6">
+      <%= form.label :post_image, class: "label" %>
+      <label class="btn btn-white btn-small inline-flex items-center">
+        <%= render_svg 'icons/image', styles: "fill-current text-gray-600 mr-2" %> Upload Image
+        <%= form.file_field :post_image, class: "hidden" %>
+      </label>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :post_video, class: "label" %>
+      <label class="btn btn-white btn-small inline-flex items-center">
+        <%= render_svg 'icons/video', styles: "fill-current text-gray-600 mr-2 " %> Upload Video
+        <%= form.file_field :post_video, class: "hidden" %>
+      </label>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <%= form.submit class: "btn btn-gray" %>
+  </div>
+<% end %>
