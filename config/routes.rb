@@ -43,7 +43,8 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:show], as: "profile", :path => "u"
-  get "about" => "home#about"
+  get "about" => "home#about_2"
+  get "about_2" => "home#about"
   get "live" => "posts#index"
   get "invite" => "home#invite"
   get "newest" => "posts#newest"

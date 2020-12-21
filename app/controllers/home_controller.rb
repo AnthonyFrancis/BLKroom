@@ -5,6 +5,9 @@ class HomeController < ApplicationController
   def about
   end
 
+  def about_2
+  end
+
   def invite
   end
   
