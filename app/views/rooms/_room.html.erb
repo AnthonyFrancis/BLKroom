@@ -12,6 +12,10 @@
   </div>
 
   <div class="text-xs font-normal flex">
+    <div id="subscribed_block" class="my-6">
+        <%= render "subscriptions/subscription_index", room: room %>
+    </div>
+
     <%= link_to room, class: "no-underline" do %>
       <%= render_svg 'icons/view', styles: "w-4 fill-current text-gray-500", title: "View" %>
     <% end %>
