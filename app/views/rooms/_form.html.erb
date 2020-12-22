@@ -17,6 +17,14 @@
   </div>
 
   <div class="mb-6">
+    <%= form.label :room_image, class: "label" %>
+    <label class="btn btn-white btn-small inline-flex items-center">
+          <%= render_svg 'icons/image', styles: "fill-current text-gray-600 mr-2" %> Upload Image
+          <%= form.file_field :room_image, class: "hidden" %>
+    </label>
+  </div>
+
+  <div class="mb-6">
     <%= form.label :title, class: "label" %>
     <%= form.text_field :title, class: "input" %>
   </div>
