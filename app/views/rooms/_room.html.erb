@@ -7,14 +7,13 @@
         </span>
       </p>
       <h3 class="m-0 leading-tight text-base"><%= room.title %><h3>
-      <%= image_tag room.room_image.large.url, class: "max-w-full my-2" if room.room_image.present? %>
     <% end %>
   </div>
 
   <div class="text-xs font-normal flex">
-    <div id="subscribed_block" class="my-6">
-        <%= render "subscriptions/subscription_index", room: room %>
-    </div>
+    <!--<div id="subscribed_block" class="my-6">
+        <%#= render "subscriptions/subscription_index", room: room %>
+    </div>-->
 
     <%= link_to room, class: "no-underline" do %>
       <%= render_svg 'icons/view', styles: "w-4 fill-current text-gray-500", title: "View" %>
