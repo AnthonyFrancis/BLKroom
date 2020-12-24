@@ -1,4 +1,0 @@
-var subscribedBlock = document.getElementById("subscribed_block_index");
-
-subscribedBlock.innerHTML = "";
-subscribedBlock.insertAdjacentHTML("beforeend", "<%= escape_javascript(render partial: 'subscriptions/subscription_index', room: room) %>")
