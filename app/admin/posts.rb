@@ -30,6 +30,7 @@ form do |f|
     f.input :body
     f.input :url
     f.input :votes_count
+    f.input :room_id
     f.input :created_at
   end
   f.actions
