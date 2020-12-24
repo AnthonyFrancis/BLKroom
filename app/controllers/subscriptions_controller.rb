@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = @room.subscriptions.where(user_id: current_user.id).first_or_create
+    @room_id = @room.id
 
     respond_to do |format|
       format.html { redirect_to @room, notice: "You successfully subscribed to #{@room.name}"}
@@ -14,6 +15,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription = @room.subscriptions.where(user_id: current_user.id).first_or_create
     @subscription.destroy
+    @room_id = @room.id
 
     respond_to do |format|
       format.html { redirect_to @room, notice: "You successfully unsubscribed to #{@room.name}"}

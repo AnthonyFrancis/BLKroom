@@ -1,7 +1,11 @@
-var subscribedBlock = document.getElementById("subscribed_block");
+//debugger;
+var subscribedBlock = document.getElementById("subscribed_block_<%= @room_id %>");
 var subscribedCount = document.getElementById("subscribed_count");
 
-subscribedBlock.innerHTML = "";
-subscribedCount.innerHTML = "";
+subscribedBlock.innerHTML ="";
 subscribedBlock.insertAdjacentHTML("beforeend", "<%= escape_javascript(render partial: 'subscriptions/subscription', room: @room) %>");
-subscribedCount.insertAdjacentHTML("beforeend", "<%= escape_javascript(@room.subscriptions.count.to_s) %>")
+
+if(subscribedCount != null) {
+	subscribedCount.innerHTML = "";
+	subscribedCount.insertAdjacentHTML("beforeend", "<%= escape_javascript(@room.subscriptions.count.to_s) %>")
+}

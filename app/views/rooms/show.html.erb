@@ -90,7 +90,7 @@
                     <h3 class="m-0 leading-tight text-lg"><%= @room.title %></h3>
 
 
-                    <div id="subscribed_block" class="my-6">
+                    <div id="subscribed_block_<%= @room.id %>" class="my-6">
                         <%= render "subscriptions/subscription", room: @room %>
                     </div>
 
