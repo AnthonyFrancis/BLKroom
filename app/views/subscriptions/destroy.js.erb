@@ -1,1 +1,5 @@
-<%= render "subscribed" %>
+<% if current_page?(controller: "welcome", action: "show") %>
+	<%= render "subscribed_index" %>
+<% else %>
+	<%= render "subscribed" %>
+<% end %>

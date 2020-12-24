@@ -1,7 +1,4 @@
-var subscribedBlock = document.getElementById("subscribed_block");
-var subscribedCount = document.getElementById("subscribed_count");
+var subscribedBlock = document.getElementById("subscribed_block_index");
 
 subscribedBlock.innerHTML = "";
-subscribedCount.innerHTML = "";
-subscribedBlock.insertAdjacentHTML("beforeend", "<%= escape_javascript(render partial: 'subscriptions/subscription_index', room: room) %>");
-subscribedCount.insertAdjacentHTML("beforeend", "<%= escape_javascript(@room.subscriptions.count.to_s) %>")
+subscribedBlock.insertAdjacentHTML("beforeend", "<%= escape_javascript(render partial: 'subscriptions/subscription_index', room: room) %>")
