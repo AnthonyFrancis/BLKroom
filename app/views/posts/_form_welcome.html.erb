@@ -83,6 +83,7 @@
   </div>
 
   <div class="mb-6">
+    <%= hidden_field_tag 'came_from', "post" %>
     <%= form.submit 'Post', class: "btn btn-gray" %>
   </div>
 <% end %>

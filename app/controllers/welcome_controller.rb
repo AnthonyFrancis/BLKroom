@@ -5,6 +5,8 @@ class WelcomeController < ApplicationController
 	def show
 	    @user = current_user
 	    @rooms = Room.all
+	    @home_page = true
+	    
 	    case step
 	    when :post
 	      @post = current_user.posts.build
