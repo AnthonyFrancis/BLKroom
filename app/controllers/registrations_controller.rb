@@ -5,7 +5,7 @@ def create
 end
 
 
-def update
+def edit
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
@@ -24,24 +24,10 @@ def update
     end
 end
 
-
   protected
 
-  def after_sign_in_path_for(resource)
-    puts "<<<<<<<<<<<<<<<< SIGN IN"
-    welcome_path(:intro)
-  end
-
   def after_sign_up_path_for(resource)
-    sign_in(resource)
-    puts "<<<<<<<<<<<<<<<< SIGN UP ACTIVE"
-    welcome_path(:intro)
-    super
-  end
-
-  def after_inactive_sign_up_path_for(resource)
-    puts "<<<<<<<<<<<<<<<< SIGN IN INACTIVE"
-    welcome_path(:intro)
+    root_path
   end
 
   def update_resource(resource, params)
